@@ -24,7 +24,7 @@ body{
     justify-content: center;
 }
 
-header{
+.header-screen-1 {
     width: 100vw;
     height: 69px;
     background-color: #ec362d;
@@ -38,7 +38,7 @@ header{
 
 .noQuizzes{
     margin-top: 77px;
-    margin-top: 29px;
+    margin-bottom: 77px;
     width: 1051px;
     height: 181px;
     border: 1px dashed #d4d4d4;
@@ -75,16 +75,17 @@ header{
     margin-top: 20px;
 }
 
-.yourQuizzes {
-    margin-top: 69px;
-}
-
 .yourQuizz{
     margin-right: 15px;
 }
 
 .yourQuizzesMenu{
     display: flex;
+}
+
+.yourQuizzes{
+    margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 .yourQuizzesHeader {
@@ -134,10 +135,6 @@ header{
     bottom: 17px;
 }
 
-.allQuizzes {
-    margin-top: 48px;
-
-}
 
 .quizzImg{
     position: relative;    
@@ -178,3 +175,19 @@ header{
     display: none;
 }
 
+@media (max-width: 1100px) {
+    body{
+        background-color: yellow;
+    }
+
+    .noQuizzes{
+        margin-top: 30px;
+        margin-bottom: 35px;
+        margin-left: 20px;
+        margin-right: 20px;        
+    }
+
+
+
+
+}
