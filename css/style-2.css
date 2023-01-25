@@ -1,0 +1,84 @@
+:root {
+    --main-red: #EC362D;
+    --background-gray: #E5E5E5;
+    --background-gray-light: #FAFAFA;
+    --red-input-error: #FFE9E9;
+    --create-quizz-message-box-text: #B9B9B9;
+    --create-quizz-message-box-border: #D4D4D4;
+    --input-text: #BABABA;
+    --input-border: #D1D1D1;
+}
+
+* {
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header-screen-2 {
+    width: 100%;
+    height: 69px;
+    background-color: var(--main-red);
+    text-justify: center;
+    padding-top: 13px;
+
+
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color:white;
+}
+
+.header-screen-2 p {
+    text-align: center;
+    height: 43px;
+}
+
+.first-img-container{
+    position: relative;
+}
+
+.main-screen-2, .first-img-container img{
+    width: 100%;
+}
+.main-screen-2,.main-screen-2 > div {
+    width: 100%;
+}
+
+.main-screen-2 > p{
+    background-image: url('../img/potterhead.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 142px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+}
+
+.main-screen-2 .quizz-container {
+    max-width: 759px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.main-screen-2 .quizz-container p{
+    max-width: 100%;
+}
+
+.main-screen-2 .answer-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.main-screen-2  .answer-item{
+
+}
