@@ -20,4 +20,7 @@ export const services = {
     deleteQuizz: async function deleteQuizz(id, key) {
         return await axiosBase.delete(`/${id}`, { headers: { "Secret-Key": `${key}` } })
     },
+    updateQuizz: async function updateQuizz(id, key, data) {
+        return await axiosBase.put(`/${id}`, data, { headers: { "Secret-Key": `${key}` } })
+    }
 }
