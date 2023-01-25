@@ -1,3 +1,14 @@
+:root{
+    --main-red: #EC362D;
+    --background-gray:#E5E5E5 ;
+    --background-gray-light:#FAFAFA ;
+    --red-input-error:#FFE9E9;
+    --create-quizz-message-box-text: #B9B9B9;
+    --create-quizz-message-box-border:#D4D4D4;
+    --input-text: #BABABA;
+    --input-border: #D1D1D1;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -166,3 +177,4 @@ header{
 .hide{
     display: none;
 }
+
