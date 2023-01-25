@@ -17,4 +17,7 @@ export const services = {
         if (quizzInfo.levels.length < 2) throw new Error("Must have at least 2 levels")
         return await axiosBase.post("/", quizzInfo).then(resp => resp.data)
     },
+    deleteQuizz: async function deleteQuizz(id, key) {
+        return await axiosBase.delete(`/${id}`, { headers: { "Secret-Key": `${key}` } })
+    },
 }
