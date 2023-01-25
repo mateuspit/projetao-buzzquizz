@@ -1,0 +1,168 @@
+* {
+	box-sizing: border-box;
+}
+
+body{
+    background-color: #fafafa;
+}
+
+.site{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header{
+    width: 100vw;
+    height: 69px;
+    background-color: #ec362d;
+    padding-top: 13px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 37px;
+    color:  white;
+    font-weight: 700; 
+    text-align: center;
+}
+
+.noQuizzes{
+    margin-top: 77px;
+    margin-top: 29px;
+    width: 1051px;
+    height: 181px;
+    border: 1px dashed #d4d4d4;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.noQuizzesText{
+    width: 250px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color:  #b9b9b9;
+    font-weight: 400; 
+    text-align: center;
+    border-radius: 5px;
+}
+
+.noQuizzesButton{
+    width: 151px;
+    height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color:  #ec362d;
+    font-weight: 400; 
+    /* text-align: center;   */
+    border: 1px dashed #ec362d;  
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.yourQuizzes {
+    margin-top: 69px;
+}
+
+.yourQuizz{
+    margin-right: 15px;
+}
+
+.yourQuizzesMenu{
+    display: flex;
+}
+
+.yourQuizzesHeader {
+    display: flex; 
+    margin-bottom: 15px;   
+}
+
+.yourQuizzesHeaderButton{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ec362d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.yourQuizzesTitle{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color:  black;
+    font-weight: 700;
+    margin-right: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;     
+}
+
+.yourQuizzImg{
+    box-shadow: inset 0 0 10px white;
+    width: 340px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.yourQuizzTitle{
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    color:  white;
+    font-weight: 400;
+    position: absolute;
+    z-index: 1;    
+    left: 17px;
+    bottom: 17px;
+}
+
+.allQuizzes {
+    margin-top: 48px;
+
+}
+
+.quizzImg{
+    position: relative;    
+}
+
+.quizzTitle{
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    color:  white;
+    font-weight: 400;
+    line-height: 22px;
+    position: absolute;
+    color: white;
+    left: 18px;
+    bottom: 18px;
+}
+
+.quizz{
+    margin-right: 15px;
+}
+
+.allQuizzesMenu{
+    display: flex;
+    flex-wrap: wrap;
+    width: 1070px;
+}
+
+.allQuizzesHeader{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color:  black;
+    font-weight: 700;    
+    margin-bottom: 12px;
+}
+
+.hide{
+    display: none;
+}
