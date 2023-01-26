@@ -67,7 +67,7 @@ body {
     font-size: 19px;
     line-height: 22px;
     color: white;
-    background-image: url('../img/potterhead.jpg');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/potterhead.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -76,7 +76,6 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 42px;
-
 }
 
 .main-screen-2 .quizz-container {
