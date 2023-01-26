@@ -74,6 +74,7 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .yourQuizz{
@@ -123,6 +124,7 @@ body{
     /* box-shadow: inset 5em 1em gold; */
     width: 340px;
     height: 181px;
+    cursor: pointer;
 }
 
 .yourQuizzImg img{
@@ -168,6 +170,7 @@ body{
 
 .quizzImg{
     position: relative;
+    cursor: pointer;
 }
 
 .quizzImg{
