@@ -1,6 +1,6 @@
 import { getQuizzes } from './services.js';
 
-export async function displaUserQuizzes(userId){
+export async function displayUserQuizzes(userId){
 
     let userQuizzes;
     // let userId = 18035;
@@ -64,3 +64,5 @@ export async function displaUserQuizzes(userId){
         `;
     }
 }
+
+displayUserQuizzes(666); // testando modulo
