@@ -117,4 +117,4 @@ export async function displayUserQuizzes(userId){
     }
 }
 
-// displayUserQuizzes(18193); // testando modulo
+displayUserQuizzes(8193); // testando modulo
