@@ -1,43 +1,66 @@
 import { getQuizzes } from './services.js';
 
-let userQuizzes;
-let elementYourQuizzesSpace = "";
-// let yourQuizzesSpace = "";
-let userId = 17982;
-let imgSrc = "";
+export async function displaUserQuizzes(userId){
 
-const quizzes = await getQuizzes() // COLETANDO TODOS OS QUIZZES DO DATABASE
+    let userQuizzes;
+    // let userId = 18035;
 
-console.log(quizzes);
-console.log(quizzes[3].id);
-console.log(quizzes[3].image);
-console.log(quizzes[3].title);
+    const quizzes = await getQuizzes() // COLETANDO TODOS OS QUIZZES DO DATABASE
 
-userQuizzes = quizzes.filter(quiz => quiz.id === userId); // COLETANDO QUIZZES DO USUARIO
-// console.log("alou: "+ userQuizzes); PQ ISSO N DA CERTO?
+    userQuizzes = quizzes.filter(quiz => quiz.id === userId); // COLETANDO QUIZZES DO USUARIO
 
+    if (userQuizzes.length > 0) { //ANALISANDO SE O USUARIO POSSUI QUIZZES
+        //PLOTANDO CABEÇALHO QUANDO O USER TEM QUIZZES
+        const elementYourQuizzesMenu = document.querySelector(".yourQuizzesMenu");
+        elementYourQuizzesMenu.innerHTML = "";
+        const elementNoQuizzes = document.querySelector(".noQuizzes");
+        elementNoQuizzes.classList.add("hide");
+        const elementYourQuizzes = document.querySelector(".yourQuizzes");
+        elementYourQuizzes.classList.remove("hide");
 
+        for (let i = 0; i < userQuizzes.length; i++) {
+            elementYourQuizzesMenu.innerHTML += `
+            <div class="yourQuizz">
+                <div class="yourQuizzImg">
+                    <div class="shadow">
+                                    
+                    </div>
+                    <img src="${userQuizzes[i].image}" alt="Imagem do quizz nrm ${i+1}">
+                    <div class="yourQuizzTitle">
+                    ${userQuizzes[i].title}
+                    </div> 
+                </div>                                       
+            </div>        
+            `;
+        }
+    }
+    else {
+        //PLOTANDO CABEÇALHO QUANDO O USER NÃO POSSUI QUIZZES
+        const elementNoQuizzes = document.querySelector(".noQuizzes");
+        elementNoQuizzes.classList.remove("hide");
+        const elementYourQuizzes = document.querySelector(".yourQuizzes");
+        elementYourQuizzes.classList.add("hide");
+    }
 
-if (userQuizzes.length > 0) { //ANALISANDO SE O USUARIO POSSUI QUIZZES
-    //PLOTANDO CABEÇALHO QUANDO O USER TEM QUIZZES ABAIXO
-    elementYourQuizzesSpace = document.querySelector(".yourQuizzesMenu");
-    elementYourQuizzesSpace.innerHTML = "";
+    //PLOTANDO TODOS OS QUIZZES
+    const elementAllQuizzesMenu = document.querySelector(".allQuizzesMenu");
+    elementAllQuizzesMenu.innerHTML = "";
 
-    for (let i = 0; i < userQuizzes.length; i++) {
-        elementYourQuizzesSpace.innerHTML += `
-        <div class="yourQuizz">
-            <div class="yourQuizzImg">
-                <img src="${userQuizzes[i].image}" alt="Imagem do quizz">
-                <div class="yourQuizzTitle">
-                ${userQuizzes[i].title}
+    console.log(quizzes);
+
+    for(let i = 0; i < quizzes.length; i++){
+        elementAllQuizzesMenu.innerHTML += `
+            <div class="quizz">
+                <div class="quizzImg">
+                    <div class="shadow">
+                                    
+                    </div>
+                    <img src="${quizzes[i].image}" alt="Imagem do quizz nmr ${i+1}">
+                    <div class="quizzTitle">
+                        ${quizzes[i].title}
+                    </div> 
                 </div> 
-            </div>                                       
-        </div>        
+            </div> 
         `;
     }
 }
-else {
-
-}
-
-
