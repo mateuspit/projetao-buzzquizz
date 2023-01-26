@@ -1,0 +1,331 @@
+:root {
+    --main-red: #EC362D;
+    --background-gray: #E5E5E5;
+    --background-gray-light: #FAFAFA;
+    --red-input-error: #FFE9E9;
+    --create-quizz-message-box-text: #B9B9B9;
+    --create-quizz-message-box-border: #D4D4D4;
+    --input-text: #BABABA;
+    --input-border: #D1D1D1;
+}
+
+
+
+.main-screen-2 * {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 22px;
+    font-size: 13px;
+    color: white;
+}
+
+.header-screen-2 * {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-screen-2 {
+    width: 100%;
+    background-color: var(--main-red);
+    height: 69px;
+    text-justify: center;
+    padding-top: 13px;
+}
+
+.header-screen-2 p {
+    text-align: center;
+    height: 43px;
+}
+
+.first-img-container {
+    position: relative;
+}
+
+.main-screen-2,
+.first-img-container img,
+.main-screen-2>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 28px;
+}
+
+.main-screen-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-gray);
+
+}
+
+.main-screen-2>p {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/potterhead.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 142px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+}
+
+.main-screen-2 .quizz-container {
+    padding: 18px;
+}
+
+.main-screen-2 .quizz-container>div:first-child {
+    background-color: blue;
+}
+
+.main-screen-2 .quizz-container>div {
+    width: 100%;
+    max-width: 688.16px;
+    margin: 0 auto;
+}
+
+.main-screen-2 .quizz-container div p:first-child {
+    width: 100%;
+    height: 89px;
+    text-align: center;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 16px 15px 16px;
+    margin-bottom: 42px;
+    background-size: cover;
+    flex-shrink: 0;
+}
+
+
+.main-screen-2 .answer-container {
+    width: 100%;
+    max-width: 688.16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-between;
+    /* justify-content: ; */
+    margin-right: 6px;
+    /* height:538px; */
+
+    width: 688.16;
+}
+
+.main-screen-2>div {
+    background-color: white;
+    max-width: 688.16px;
+    max-height: 676px;
+}
+
+.main-screen-2 .answer-container>div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.main-screen-2 .answer-item {
+    /* margin-right: 3.53%; */
+    max-width: 688.16px;
+    width: 47.94%;
+}
+
+.main-screen-2 .answer-item img {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.main-screen-2 .answer-item p {
+    margin-bottom: 12px;
+}
+
+.main-screen-2 .quizz-statistics {
+    display: flex;
+    padding: 18px 14px 22px 18px;
+    flex-wrap: wrap;
+}
+
+.main-screen-2 .quizz-statistics p:first-child {
+    max-width: 727px;
+    background-color: red;
+    flex: 1 1 727px;
+    height: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.9%;
+}
+
+.main-screen-2 .quizz-statistics *+* {
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 17px;
+    color: #484848;
+}
+
+
+.main-screen-2 .quizz-statistics>div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.95%;
+}
+
+.main-screen-2 .quizz-statistics>div:last-child {
+    flex-wrap: nowrap;
+}
+
+.main-screen-2 .quizz-statistics div img {
+    flex: 1 1 51.05%;
+    min-height: 175.2px;
+
+    margin-bottom: 9px;  
+}
+
+.main-screen-2 .quizz-statistics p {
+    flex: 2 1 46%;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 22px;
+    text-align: center;
+}
+
+.main-screen-2 .button-container> :first-child {
+    background-color: var(--main-red);
+    border-radius: 15px;
+    text-align: center;
+    /* height: 2em; */
+    width: 58.67%;
+    max-width: 260px;
+    border: 0px solid white;
+    color: white;
+    margin: 0 auto;
+    flex: 1 1 100%;
+    min-height: 44px;
+    max-height: 52px;
+    height: 1em;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.main-screen-2 .button-container> :last-child {
+    text-align: center;
+    min-height: 44px;
+    max-height: 52px;
+    height: 1em;
+    width: 58.67%;
+    max-width: 260px;
+    border: 0px solid white;
+    color: #818181;
+    margin: 0 auto;
+    display: block;
+    margin-top: 2.76%;
+    font-family: 'Roboto', sans-serif;
+    line-height: 21px;
+    font-size: 18px;
+}
+
+.main-screen-2 div.button-container {
+    margin-top: 7.51%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* alterar fonts */
+/* potterhead */
+.main-screen-2>p {
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 22px;
+}
+
+/* titles */
+.main-screen-2 .quizz-container div p:first-child {
+    line-height: 22px;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+/* titles baixo da foto*/
+.main-screen-2 .quizz-container div>*+* {
+    color: black;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+}
+
+/* primeiro button */
+.main-screen-2 .button-container> :first-child {}
+
+/* ultimo button */
+.main-screen-2 .button-container> :last-child {}
+
+@media (max-width:285px) {
+    .main-screen-2 .quizz-statistics div img {
+        width: 100%;
+        min-height: 0px;      
+    }
+}
+
+@media (max-width:351px) {
+    .main-screen-2 div.button-container {
+        margin-top: 15%;
+    }
+}
+
+@media(min-width:700px) {
+
+    /* alterar fonts */
+    /* potterhead */
+    .main-screen-2>p {
+        font-weight: 400;
+        font-size: 39px;
+        line-height: 46px;
+
+    }
+
+    /* titles */
+    .main-screen-2 .quizz-container p:first-child {
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 27px;
+
+    }
+
+    /* titles baixo da foto*/
+    .main-screen-2>p {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+    }
+
+    /* primeiro button */
+    .main-screen-2 .button-container> :first-child {
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 25px;
+    }
+
+    /* ultimo button */
+    .main-screen-2 .button-container> :last-child {
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 25px;
+    }
+
+}
