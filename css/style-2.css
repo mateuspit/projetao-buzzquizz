@@ -12,11 +12,14 @@
 * {
     box-sizing: border-box;
 }
-body{
+
+body {
+    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .header-screen-2 {
     width: 100%;
     height: 69px;
@@ -29,7 +32,7 @@ body{
     font-weight: 700;
     font-size: 37px;
     line-height: 43px;
-    color:white;
+    color: white;
 }
 
 .header-screen-2 p {
@@ -37,18 +40,33 @@ body{
     height: 43px;
 }
 
-.first-img-container{
+.first-img-container {
     position: relative;
 }
 
-.main-screen-2, .first-img-container img{
+.main-screen-2,
+.first-img-container img,
+.main-screen-2>div {
     width: 100%;
-}
-.main-screen-2,.main-screen-2 > div {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom:28px;
 }
 
-.main-screen-2 > p{
+.main-screen-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-gray);
+
+}
+
+.main-screen-2>p {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: white;
     background-image: url('../img/potterhead.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -58,27 +76,80 @@ body{
     align-items: center;
     justify-content: center;
     margin-bottom: 42px;
+
 }
 
 .main-screen-2 .quizz-container {
-    max-width: 759px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
+    padding: 18px;
 }
 
-.main-screen-2 .quizz-container p{
-    max-width: 100%;
+.main-screen-2 .quizz-container>div:first-child {
+    background-color: blue;
+}
+
+.main-screen-2 .quizz-container>div {
+    width: 100%;
+    max-width: 688.16px;
+    margin: 0 auto;
+}
+
+.main-screen-2 .quizz-container div p:first-child {
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: 700;
+    color: white;
+    width: 100%;
+    height: 89px;
+    text-align: center;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 42px;
+    background-size: cover;
+    flex-shrink: 0;
 }
 
 .main-screen-2 .answer-container {
+    width: 100%;
+    max-width: 688.16px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-.main-screen-2  .answer-item{
+    align-items: space-between;
+    /* justify-content: ; */
+    margin-right: 6px;
+    /* height:538px; */
 
+    width: 688.16;
+}
+
+.main-screen-2>div {
+    background-color: white;
+    max-width: 688.16px;
+    max-height: 676px;
+}
+
+.main-screen-2 .answer-container>div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.main-screen-2 .answer-item {
+    /* margin-right: 3.53%; */
+    max-width: 688.16px;
+    width: 47.94%;
+}
+
+.main-screen-2 .answer-item img {
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 329.91px;
+}
+
+.main-screen-2 .answer-item p {
+    margin-bottom: 12px;
 }
