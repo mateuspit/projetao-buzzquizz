@@ -6,7 +6,7 @@ function createQuestions() {
     for (let i = 0; i < Number; i++) {
         boxQuestions.innerHTML += `
       <div class="question">
-        <div class="header">
+        <div class="titulo">
             <p>Pergunta ${i + 1}</p>
             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
         </div>
@@ -48,4 +48,100 @@ function hide1() {
 function hide2() {
     let pagina = document.querySelector('.segundapagina')
     pagina.classList.add('hide');
+}
+
+function hide3() {
+    let pagina = document.querySelector('.terceirapagina')
+    pagina.classList.add('hide');
+}
+
+function renderLevels() {
+    const boxLevels = document.querySelector('.terceirapagina .level-box');
+    let Number = Number(
+        document.querySelector('.container-informacoes input:nth-child(4)').value)
+    for (let i = 1; i < inputNumberOfLevels; i++) {
+        boxLevels.innerHTML += `
+      <div class="level">
+        <div class="header">
+            <p>Nivel ${i + 1}</p>
+            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
+        </div>
+        <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
+        <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
+        <input type="url" class="level-url" required placeholder="URL da imagem do nível">
+        <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
+      </div>
+    `;
+    }
+}
+
+function createLevels() {
+    const allCorrectAnswers = document.querySelectorAll('.createQuizzPage .correct-answer');
+    const allWrongAnswers1 = document.querySelectorAll('.createQuizzPage .wrong-answer1');
+    const allWrongAnswers2 = document.querySelectorAll('.createQuizzPage .wrong-answer2');
+    const allWrongAnswers3 = document.querySelectorAll('.createQuizzPage .wrong-answer3');
+    const allQuestionColors = document.querySelectorAll('.createQuizzPage .question-color');
+    const allQuestionTitles = document.querySelectorAll('.createQuizzPage .question-title');
+    const allQuestionUrlsCorrects = document.querySelectorAll(
+        '.createQuizzPage .question-url-correct'
+    );
+    const allQuestionUrls1 = document.querySelectorAll('.createQuizzPage .question-url1');
+    const allQuestionUrls2 = document.querySelectorAll('.createQuizzPage .question-url2');
+    const allQuestionUrls3 = document.querySelectorAll('.createQuizzPage .question-url3');
+
+    for (let i = 0; i < allCorrectAnswers.length; i++) {
+        const title = allQuestionTitles[i].value;
+        const color = allQuestionColors[i].value;
+        const correct = allCorrectAnswers[i].value;
+        const urlCorrect = allQuestionUrlsCorrects[i].value;
+        const wrong1 = allWrongAnswers1[i].value;
+        const wrong2 = allWrongAnswers2[i].value;
+        const wrong3 = allWrongAnswers3[i].value;
+        const url1 = allQuestionUrls1[i].value;
+        const url2 = allQuestionUrls2[i].value;
+        const url3 = allQuestionUrls3[i].value;
+
+        questionStorage.push({
+            title: title,
+            color: color,
+            answers: [
+                {
+                    text: correct,
+                    image: urlCorrect,
+                    isCorrectAnswer: true,
+                },
+                {
+                    text: wrong1,
+                    image: url1,
+                    isCorrectAnswer: false,
+                },
+            ],
+        });
+
+        if (wrong2 !== '' && wrong3 === '') {
+            questionStorage[i].answers.push({
+                text: wrong2,
+                image: url2,
+                isCorrectAnswer: false,
+            });
+        } else if (wrong2 !== '' && wrong3 !== '') {
+            questionStorage[i].answers.push(
+                {
+                    text: wrong2,
+                    image: url2,
+                    isCorrectAnswer: false,
+                },
+                {
+                    text: wrong3,
+                    image: url3,
+                    isCorrectAnswer: false,
+                }
+            );
+        }
+    }
+    questions.classList.add('hide');
+    questions.classList.remove('questions');
+    levels.classList.remove('hide');
+    levels.classList.add('levels');
+    renderLevels();
 }

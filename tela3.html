@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-3.css">
 
 </head>
 
@@ -36,7 +37,7 @@
                 <input type="number" min="1" required title="Digite um número igual ou maior que 0"
                     placeholder="Quantidade de níveis do quizz">
             </div>
-            <button onclick="hide1()">Prosseguir para criar perguntas</button>
+            <button onclick="hide1() " onclick="createQuestions()">Prosseguir para criar perguntas</button>
         </div>
         <div class="segundapagina">
             <div class="frase">
@@ -45,7 +46,16 @@
             <div class="question-box">
 
             </div>
-            <button onclick="hide2()">Prosseguir para criar níveis</button>
+            <button onclick="hide2()" onclick="createLevels()">Prosseguir para criar níveis</button>
+        </div>
+        <div class="terceirapagina">
+            <div class="frase">
+                Agora, decida os níveis
+            </div>
+            <div class="level-box">
+
+            </div>
+            <button onclick="hide3()">Finalizar o quizz</button>
         </div>
 
 

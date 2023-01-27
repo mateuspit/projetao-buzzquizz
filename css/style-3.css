@@ -1,0 +1,91 @@
+.paginainicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.frase {
+    width: 224px;
+    height: 27px;
+    left: 608px;
+    margin-top: 140px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.container-informacoes {
+    width: 600px;
+    height: 256px;
+    margin-top: 194px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.container-informacoes input {
+    height: 46px;
+    margin-top: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+}
+
+.paginainicial button {
+    width: 368.86px;
+    height: 54px;
+    margin-top: 85px;
+    background: #EC362D;
+    border-radius: 15px;
+}
+
+.segundapagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.terceirapagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.questions .question,
+.levels .level {
+    height: 74px;
+    overflow: hidden;
+    text-align: start;
+    padding-top: 0;
+    margin-bottom: 24px;
+}
+
+.questions .question p,
+.levels .level p {
+    margin-left: 17px;
+    margin-bottom: 27px;
+    margin-top: 27px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.question.selected {
+    height: 825px;
+}
+
+.question.selected p,
+.level.selected p {
+    margin-bottom: 12px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+}
