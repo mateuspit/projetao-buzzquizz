@@ -37,7 +37,7 @@
                 <input type="number" min="1" required title="Digite um número igual ou maior que 0"
                     placeholder="Quantidade de níveis do quizz">
             </div>
-            <button onclick="hide1() " onclick="createQuestions()">Prosseguir para criar perguntas</button>
+            <button onclick="hide1()" onclick="createQuestions()">Prosseguir para criar perguntas</button>
         </div>
         <div class="segundapagina">
             <div class="frase">
@@ -55,7 +55,15 @@
             <div class="level-box">
 
             </div>
-            <button onclick="hide3()">Finalizar o quizz</button>
+            <button onclick="hide3()" onclick="renderSucess()">Finalizar o quizz</button>
+        </div>
+        <div class="quartapagina">
+            <div class="frase">Seu quizz está pronto</div>
+            <div class="sucess-box">
+
+            </div>
+            <button onclick="accessQuizz()">Acessar Quizz</button>
+            <h2 onclick="backHome()">voltar pra home</h2>
         </div>
 
 

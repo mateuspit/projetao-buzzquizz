@@ -3,12 +3,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 4;
 }
 
 .frase {
     width: 224px;
     height: 27px;
-    left: 608px;
     margin-top: 140px;
     font-family: 'Roboto';
     font-style: normal;
@@ -26,6 +26,9 @@
     margin-top: 194px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container-informacoes input {
@@ -34,6 +37,7 @@
     background: #FFFFFF;
     border: 1px solid #D1D1D1;
     border-radius: 5px;
+    width: 564px;
 }
 
 .paginainicial button {
@@ -42,6 +46,16 @@
     margin-top: 85px;
     background: #EC362D;
     border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFF5F4;
 }
 
 .segundapagina {
@@ -49,6 +63,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 3;
 }
 
 .terceirapagina {
@@ -56,6 +71,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .questions .question,
@@ -88,4 +104,70 @@
 .titulo {
     display: flex;
     justify-content: space-between;
+}
+
+.quartapagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.segundapagina button {
+    width: 368.86px;
+    height: 54px;
+    margin-top: 85px;
+    background: #EC362D;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFF5F4;
+}
+
+.terceirapagina button {
+    width: 368.86px;
+    height: 54px;
+    margin-top: 85px;
+    background: #EC362D;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFF5F4;
+}
+
+.quartapagina button {
+    width: 368.86px;
+    height: 54px;
+    margin-top: 85px;
+    background: #EC362D;
+    border-radius: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFF5F4;
+}
+
+.quizz {
+    width: 500px;
+    height: 266px;
 }

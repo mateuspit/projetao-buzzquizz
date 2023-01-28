@@ -75,19 +75,20 @@ function renderLevels() {
     }
 }
 
+let questionStorage = [];
 function createLevels() {
-    const allCorrectAnswers = document.querySelectorAll('.createQuizzPage .correct-answer');
-    const allWrongAnswers1 = document.querySelectorAll('.createQuizzPage .wrong-answer1');
-    const allWrongAnswers2 = document.querySelectorAll('.createQuizzPage .wrong-answer2');
-    const allWrongAnswers3 = document.querySelectorAll('.createQuizzPage .wrong-answer3');
-    const allQuestionColors = document.querySelectorAll('.createQuizzPage .question-color');
-    const allQuestionTitles = document.querySelectorAll('.createQuizzPage .question-title');
+    const allCorrectAnswers = document.querySelectorAll(' .correct-answer');
+    const allWrongAnswers1 = document.querySelectorAll('.wrong-answer1');
+    const allWrongAnswers2 = document.querySelectorAll('.wrong-answer2');
+    const allWrongAnswers3 = document.querySelectorAll('.wrong-answer3');
+    const allQuestionColors = document.querySelectorAll('.question-color');
+    const allQuestionTitles = document.querySelectorAll('.question-title');
     const allQuestionUrlsCorrects = document.querySelectorAll(
-        '.createQuizzPage .question-url-correct'
+        '.question-url-correct'
     );
-    const allQuestionUrls1 = document.querySelectorAll('.createQuizzPage .question-url1');
-    const allQuestionUrls2 = document.querySelectorAll('.createQuizzPage .question-url2');
-    const allQuestionUrls3 = document.querySelectorAll('.createQuizzPage .question-url3');
+    const allQuestionUrls1 = document.querySelectorAll('.question-url1');
+    const allQuestionUrls2 = document.querySelectorAll('.question-url2');
+    const allQuestionUrls3 = document.querySelectorAll('.question-url3');
 
     for (let i = 0; i < allCorrectAnswers.length; i++) {
         const title = allQuestionTitles[i].value;
@@ -144,4 +145,18 @@ function createLevels() {
     levels.classList.remove('hide');
     levels.classList.add('levels');
     renderLevels();
+}
+
+let inputTitle = document.querySelector('.container-informacoes input').value;
+let inputImage = document.querySelector(
+    '.container-informacoes input:nth-child(2)').value;
+function renderSucess() {
+    const boxSucess = document.querySelector('.quartapagina .sucess-box');
+    boxSucess.innerHTML = `
+    <div class="quizz">
+      <div class="gradient"></div>
+      <img src="${inputImage}" alt="">
+      <p>${inputTitle}</p>
+    </div>
+  `;
 }
