@@ -102,4 +102,5 @@ export const view2 = {
             return acc;
         }, []);
     },
+    
 }

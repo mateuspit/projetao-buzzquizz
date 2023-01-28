@@ -17,6 +17,14 @@ const utils = {
     },
     generatePercentageScore(trueMatches, total){
         return (100*(Number(trueMatches)/Number(total))).toFixed(2)
+    },
+    validateGetQuizzByID: function validateGetQuizzByID(title, questions) {
+        if (title?.length === 0 || title === undefined) {
+            return true
+        }
+        if (questions?.length === 0 || title === undefined) {
+            return true
+        }
     }
 }
 export const {generateContainerID, generateRandomArray, randomCompareFunction, compareID, generatePercentageScore} = utils;
