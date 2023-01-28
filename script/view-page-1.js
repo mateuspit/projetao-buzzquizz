@@ -2,16 +2,6 @@ export const view1 = {
     mountFirstPage: async function mountFirstPage(quizzes, userId) {
         this.mainElement = window.document.querySelector('.site')
         this.mainElement.innerHTML = "";
-        // this.mainElement.innerHTML += "";
-    //     this.mainElement.innerHTML = `
-        
-    //     <main class="main-screen-1">
-    //         <div class="yourQuizzesSpace">
-    //         </div>
-    //         <div class="allQuizzes">
-    //         </div>
-    //     </main>
-    // `;
         let userQuizzes;
         userQuizzes = quizzes.filter(quiz => quiz.id === userId);
         this.mainElement.innerHTML = this.mountMainContainer();
