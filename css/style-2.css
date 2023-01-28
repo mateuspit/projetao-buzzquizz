@@ -9,8 +9,6 @@
     --input-border: #D1D1D1;
 }
 
-
-
 .main-screen-2 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -26,12 +24,17 @@
     font-weight: 700;
     font-size: 37px;
     color: white;
+    position: fixed;
+    top: 13px;
+    left: calc(-88px + 50%);
+    z-index: 10;
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #E5E5E5;
 }
 
 .header-screen-2 {
@@ -40,6 +43,8 @@ body {
     height: 69px;
     text-justify: center;
     padding-top: 13px;
+    position: fixed;
+    z-index: 10;
 }
 
 .header-screen-2 p {
@@ -47,9 +52,10 @@ body {
     height: 43px;
 }
 
+/* 
 .first-img-container {
     position: relative;
-}
+} */
 
 .main-screen-2,
 .first-img-container img,
@@ -74,7 +80,10 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 142px;
+    height: 100vw;
+    /* height: calc(0.384 * 100vw ); */
+    /* height: calc(4 * (100vh - 38vw)); */
+    max-height: 242px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,6 +91,7 @@ body {
 }
 
 .main-screen-2 .quizz-container {
+    display: block;
     padding: 18px;
 }
 
@@ -110,7 +120,6 @@ body {
     flex-shrink: 0;
 }
 
-
 .main-screen-2 .answer-container {
     width: 100%;
     max-width: 688.16px;
@@ -127,7 +136,6 @@ body {
 .main-screen-2>div {
     background-color: white;
     max-width: 688.16px;
-    max-height: 676px;
 }
 
 .main-screen-2 .answer-container>div {
@@ -141,6 +149,14 @@ body {
     /* margin-right: 3.53%; */
     max-width: 688.16px;
     width: 47.94%;
+    transition: all 0.3s ease-in;
+}
+
+.main-screen-2 .answer-item:hover {
+    position: relative;
+    z-index: 2;
+    font-weight: 700;
+    transform: scale(1.05, 1.05);
 }
 
 .main-screen-2 .answer-item img {
@@ -169,14 +185,6 @@ body {
     margin-bottom: 2.9%;
 }
 
-.main-screen-2 .quizz-statistics *+* {
-    font-weight: 700;
-    line-height: 20px;
-    font-size: 17px;
-    color: #484848;
-}
-
-
 .main-screen-2 .quizz-statistics>div {
     display: flex;
     flex-wrap: wrap;
@@ -191,7 +199,7 @@ body {
     flex: 1 1 51.05%;
     min-height: 175.2px;
 
-    margin-bottom: 9px;  
+    margin-bottom: 9px;
 }
 
 .main-screen-2 .quizz-statistics p {
@@ -246,22 +254,18 @@ body {
     width: 100%;
 }
 
-/* alterar fonts */
-/* potterhead */
 .main-screen-2>p {
     font-weight: 700;
     font-size: 19px;
     line-height: 22px;
 }
 
-/* titles */
 .main-screen-2 .quizz-container div p:first-child {
     line-height: 22px;
     font-weight: 700;
     font-size: 19px;
 }
 
-/* titles baixo da foto*/
 .main-screen-2 .quizz-container div>*+* {
     color: black;
     font-weight: 700;
@@ -269,16 +273,18 @@ body {
     line-height: 15px;
 }
 
-/* primeiro button */
-.main-screen-2 .button-container> :first-child {}
 
-/* ultimo button */
-.main-screen-2 .button-container> :last-child {}
+.main-screen-2 .quizz-statistics div p {
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 17px;
+    color: #484848;
+}
 
 @media (max-width:285px) {
     .main-screen-2 .quizz-statistics div img {
         width: 100%;
-        min-height: 0px;      
+        min-height: 0px;
     }
 }
 
@@ -290,8 +296,6 @@ body {
 
 @media(min-width:700px) {
 
-    /* alterar fonts */
-    /* potterhead */
     .main-screen-2>p {
         font-weight: 400;
         font-size: 39px;
@@ -299,33 +303,38 @@ body {
 
     }
 
-    /* titles */
     .main-screen-2 .quizz-container p:first-child {
         font-weight: 700;
         font-size: 23px;
         line-height: 27px;
 
     }
-
-    /* titles baixo da foto*/
     .main-screen-2>p {
         font-weight: 700;
         font-size: 20px;
         line-height: 23px;
     }
 
-    /* primeiro button */
     .main-screen-2 .button-container> :first-child {
         font-weight: 400;
         font-size: 21px;
         line-height: 25px;
     }
 
-    /* ultimo button */
     .main-screen-2 .button-container> :last-child {
         font-weight: 400;
         font-size: 21px;
         line-height: 25px;
     }
 
+}
+
+.red-opacity {
+    background-color: red;
+    opacity: 0.3;
+}
+
+.green-opacity {
+    background-color: green;
+    opacity: 0.3;
 }
