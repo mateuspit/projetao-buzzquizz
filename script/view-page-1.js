@@ -59,7 +59,7 @@ export const view1 = {
                 </div>`
     },
     generateQuizzMenuItem: function generateQuizzMenuItem(image, title, i) {
-        return `<div class="quizz">
+        return `<div id="others-${i}" onclick="goToPage2(event, ${i+1})" class="quizz">
                     <div class="quizzImg">
                         <div class="shadow">
                                         
@@ -90,7 +90,7 @@ export const view1 = {
     },
     generateUserQuizzes: function generateUserQuizzes(image, title, i) {
         return `
-                        <div class="yourQuizz">
+                        <div id="user-${i}" class="yourQuizz">
                             <div class="yourQuizzImg">
                                 <div class="shadow">
                                                     
@@ -103,5 +103,10 @@ export const view1 = {
                         </div>        
                     `
     },
+    cleanUpPage1Classess: function cleanUpPage1Classess(){
+        document.querySelector('main').classList.remove('main-screen-1')
+        document.querySelector('body').classList.remove('main-screen-1')
+        document.querySelector('body').classList.remove('site')
+    }
 
 }

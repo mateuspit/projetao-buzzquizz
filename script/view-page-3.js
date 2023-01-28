@@ -1,53 +1,53 @@
 export const view3 = {
     mountInitialPage: async function mountInitialPage() {
         return `   <header>
-        <p>BuzzQuiz</p>
-    </header>
-    <main>
-        <div class="paginainicial">
-            <div class="frase">
-                Comece pelo começo
-            </div>
-            <div class="container-informacoes">
-                <input type="text" minlength="20" maxlength="65" required title="Digite entre 20 e 65"
-                    placeholder="Título do seu quizz">
-                <input type="url" required title="Digite uma URL válida" placeholder="URL da imagem do seu quizz">
-                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
-                    placeholder="Quantidade de perguntas do quizz">
-                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
-                    placeholder="Quantidade de níveis do quizz">
-            </div>
-            <button onclick="hide(this)" onclick="createQuestions()">Prosseguir para criar perguntas</button>
-        </div>
-        <div class="segundapagina hide">
-            <div class="frase">
-                SEGUNDA PAGINA
-            </div>
-            <div class="question-box">
+                        <p>BuzzQuiz</p>
+                    </header>
+                    <main>
+                        <div class="paginainicial">
+                            <div class="frase">
+                                Comece pelo começo
+                            </div>
+                            <div class="container-informacoes">
+                                <input type="text" minlength="20" maxlength="65" required title="Digite entre 20 e 65"
+                                    placeholder="Título do seu quizz">
+                                <input type="url" required title="Digite uma URL válida" placeholder="URL da imagem do seu quizz">
+                                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
+                                    placeholder="Quantidade de perguntas do quizz">
+                                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
+                                    placeholder="Quantidade de níveis do quizz">
+                            </div>
+                            <button onclick="hide(this)" onclick="createQuestions()">Prosseguir para criar perguntas</button>
+                        </div>
+                        <div class="segundapagina hide">
+                            <div class="frase">
+                                SEGUNDA PAGINA
+                            </div>
+                            <div class="question-box">
 
-            </div>
-            <button onclick="hide(this)" onclick="createLevels()">Prosseguir para criar níveis</button>
-        </div>
-        <div class="terceirapagina hide">
-            <div class="frase">
-                Agora, decida os níveis
-            </div>
-            <div class="level-box">
+                            </div>
+                            <button onclick="hide(this)" onclick="createLevels()">Prosseguir para criar níveis</button>
+                        </div>
+                        <div class="terceirapagina hide">
+                            <div class="frase">
+                                Agora, decida os níveis
+                            </div>
+                            <div class="level-box">
 
-            </div>
-            <button onclick="hide(this)" onclick="renderSucess()">Finalizar o quizz</button>
-        </div>
-        <div class="quartapagina hide">
-            <div class="frase">Seu quizz está pronto</div>
-            <div class="sucess-box">
+                            </div>
+                            <button onclick="hide(this)" onclick="renderSucess()">Finalizar o quizz</button>
+                        </div>
+                        <div class="quartapagina hide">
+                            <div class="frase">Seu quizz está pronto</div>
+                            <div class="sucess-box">
 
-            </div>
-            <button onclick="accessQuizz()">Acessar Quizz</button>
-            <h2 onclick="onclick="window.location.reload()"">voltar pra home</h2>
-        </div>
+                            </div>
+                            <button onclick="accessQuizz()">Acessar Quizz</button>
+                            <h2 onclick="onclick="window.location.reload()"">voltar pra home</h2>
+                        </div>
 
 
-    </main>`
+                    </main>`
     },createQuestions: function createQuestions() {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
         let Number = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
