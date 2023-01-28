@@ -28,4 +28,22 @@ export const view = {
                     <p>${text}</p>
                 </div>`;
     },
+    createStatisticMessageTemplate: function createStatisticMessageTemplate(score) {
+        return ` <div>
+                    <div class="quizz-statistics">
+                        <p>${score}% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+
+                        <div>
+                            <img src="./img/gato.jpg" alt="gato">
+                            <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
+                                abaixo para usar o vira-tempo e reiniciar este teste.</p>
+                        </div>
+                        <div onclick="resetQuizz()" class="button-container">
+                            <button>Reiniciar Quizz</button>
+                            <!-- <br/> -->
+                            <button onclick="window.location.reload()">Voltar para home</button>
+                        </div>
+                    </div>
+                </div>`;
+    },
 }
