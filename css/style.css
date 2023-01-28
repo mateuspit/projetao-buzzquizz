@@ -15,16 +15,43 @@
 
 body {
     background-color: #fafafa;
+    width:100%;
 }
 
-.site {
+
+.header-screen-2 {
+    width: 100%;
+    background-color: var(--main-red);
+    height: 69px;
+    text-justify: center;
+    /* padding-top: 13px; */
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 10;
+}
+
+.header-screen-2 p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    color: white;
+    position: fixed;
+    top: 13px;
+    left: calc(-88px + 50%);
+    z-index: 10;
+}
+
+.main-screen-1 .site {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
-header {
+main{
+    margin: 0 auto;
+}
+.main-screen-1 header {
     width: 100vw;
     height: 69px;
     background-color: #ec362d;
@@ -36,10 +63,19 @@ header {
     text-align: center;
 }
 
+.main-screen-1 .allQuizzes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-.noQuizzes {
-    margin-top: 77px;
+.main-screen-1 .noQuizzes {
+    margin-top: 100px;
     margin-bottom: 77px;
+    margin-left: auto;
+    margin-right: auto;
     width: 1051px;
     height: 181px;
     border: 1px dashed #d4d4d4;
@@ -50,7 +86,7 @@ header {
     justify-content: center;
 }
 
-.noQuizzesText {
+.main-screen-1 .noQuizzesText {
     width: 250px;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -60,7 +96,7 @@ header {
     border-radius: 5px;
 }
 
-.noQuizzesButton {
+.main-screen-1 .noQuizzesButton {
     width: 151px;
     height: 40px;
     font-family: 'Roboto', sans-serif;
@@ -77,25 +113,25 @@ header {
     cursor: pointer;
 }
 
-.yourQuizz {
+.main-screen-1 .yourQuizz {
     margin-right: 15px;
 }
 
-.yourQuizzesMenu {
+.main-screen-1 .yourQuizzesMenu {
     display: flex;
 }
 
-.yourQuizzes {
+.main-screen-1 .yourQuizzes {
     margin-top: 70px;
     margin-bottom: 50px;
 }
 
-.yourQuizzesHeader {
+.main-screen-1 .yourQuizzesHeader {
     display: flex;
     margin-bottom: 15px;
 }
 
-.yourQuizzesHeaderButton {
+.main-screen-1 .yourQuizzesHeaderButton {
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -108,7 +144,7 @@ header {
     justify-content: center;
 }
 
-.yourQuizzesTitle {
+.main-screen-1 .yourQuizzesTitle {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: black;
@@ -119,31 +155,31 @@ header {
     justify-content: center;
 }
 
-.yourQuizzImg {
+.main-screen-1 .yourQuizzImg {
     box-shadow: inset 0 0 10px white;
-    width: 340px;
+    max-width: 340px;
     height: 181px;
     cursor: pointer;
 }
 
-.yourQuizzImg img {
+.main-screen-1 .yourQuizzImg img {
     /* box-shadow: inset 20px 20px 10px black; */
     /* box-shadow: inset 5em 1em gold; */
-    width: 100%;
+    max-width: 340px;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.youQuizz {
+.main-screen-1 .youQuizz {
     box-shadow: inset 8px 8px 10px black;
 }
 
-.yourQuizzImg {
+.main-screen-1 .yourQuizzImg {
     position: relative;
 }
 
-.yourQuizzTitle {
+.main-screen-1 .yourQuizzTitle {
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
     color: white;
@@ -154,7 +190,7 @@ header {
     bottom: 17px;
 }
 
-.shadow {
+.main-screen-1 .shadow {
     position: absolute;
     /* box-shadow: inset 0 -40px 30px black; */
     /* background-color: aqua; */
@@ -166,17 +202,17 @@ header {
 
 }
 
-.quizzImg {
+.main-screen-1 .quizzImg {
     position: relative;
     cursor: pointer;
 }
 
-.quizzImg {
+.main-screen-1 .quizzImg {
     width: 340px;
     height: 181px;
 }
 
-.quizzImg img {
+.main-screen-1 .quizzImg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -184,7 +220,7 @@ header {
 
 }
 
-.quizzTitle {
+.main-screen-1 .quizzTitle {
     width: 300px;
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
@@ -197,18 +233,18 @@ header {
     bottom: 18px;
 }
 
-.quizz {
+.main-screen-1 .quizz {
     margin-right: 15px;
     margin-bottom: 12px;
 }
 
-.allQuizzesMenu {
+.main-screen-1 .allQuizzesMenu {
     display: flex;
     flex-wrap: wrap;
-    width: 1070px;
+    max-width: 1070px;
 }
 
-.allQuizzesHeader {
+.main-screen-1 .allQuizzesHeader {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: black;
@@ -217,50 +253,50 @@ header {
 }
 
 @media (max-width: 1100px) {
+    .main-screen-1 .allQuizzesMenu {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1070px;
+    }
+    .main-screen-1 .noQuizzes {
+        max-width: 340px;
 
-    .noQuizzes {
-        width: 340px;
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-top: 30px;
-        margin-bottom: 35px
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+        margin-bottom: 35px;
     }
 
-    .allQuizzesMenu {
+    .main-screen-1 .allQuizzesMenu {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        width: auto;
-    }
-
-    .allQuizzes {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        /* width: auto; */
     }
 
 
-    .yourQuizzes {
+
+    .main-screen-1 .yourQuizzes {
         margin-top: 50px;
         margin-bottom: 40px;
     }
 
-    .yourQuizzesMenu {
+    /* .main-screen-1 .yourQuizzesMenu {
         display: flex;
         flex-direction: column;
-    }
+    } */
 
-    .yourQuizz {
+    .main-screen-1 .yourQuizz {
         margin-right: 0px;
         margin-bottom: 15px;
     }
 
-    .yourQuizzesHeader {
+    .main-screen-1 .yourQuizzesHeader {
         justify-content: space-between;
     }
 
-    .quizz {
+    .main-screen-1 .quizz {
         margin-right: 0px;
     }
+    
 }
