@@ -171,3 +171,8 @@
     width: 500px;
     height: 266px;
 }
+
+.hide {
+    display: none;
+    position: absolute;
+}

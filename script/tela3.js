@@ -40,20 +40,14 @@ function expandQuestion(req) {
     }
 }
 
-function hide1() {
-    let pagina = document.querySelector('.paginainicial')
+function hide(elemento) {
+    let pagina = elemento.parentNode.parentNode;
+    let nextPagina = elemento.parentNode.parentNode.nextSibling;
     pagina.classList.add('hide');
+    console.log(pagina);
+    nextPagina.classList.remove('hide');
 }
 
-function hide2() {
-    let pagina = document.querySelector('.segundapagina')
-    pagina.classList.add('hide');
-}
-
-function hide3() {
-    let pagina = document.querySelector('.terceirapagina')
-    pagina.classList.add('hide');
-}
 
 function renderLevels() {
     const boxLevels = document.querySelector('.terceirapagina .level-box');
