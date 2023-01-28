@@ -1,4 +1,4 @@
-import { getQuizzes } from './services.js';
+import { getQuizzes } from '../script/services.js';
 
 export async function displayUserQuizzes(userId){
 
@@ -117,4 +117,4 @@ export async function displayUserQuizzes(userId){
     }
 }
 
-displayUserQuizzes(18193); // testando modulo
+displayUserQuizzes(8193); // testando modulo

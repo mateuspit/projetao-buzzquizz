@@ -1,6 +1,6 @@
-import { getQuizzes, getQuizz, createQuizz } from './services.js'
+import { getQuizzes, getQuizz, createQuizz } from '../script/services.js'
 import { view } from './view.js';
-import { compareID, generatePercentageScore } from './utils.js'
+import { compareID, generatePercentageScore } from '../script/utils.js'
 // console.log(await getQuizzes())
 const quizz = {
 	title: "Título do quizz",

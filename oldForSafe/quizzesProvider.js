@@ -1,4 +1,4 @@
-import { getQuizzes } from './services.js';
+import { getQuizzes } from '../script/services.js';
 
 let quizzes;
 

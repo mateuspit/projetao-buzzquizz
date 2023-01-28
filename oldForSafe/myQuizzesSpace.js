@@ -1,5 +1,5 @@
 import { hasQuizzes } from './checkQuizzes.js';
-import { services } from './services.js';
+import { services } from '../script/services.js';
 
 const myQuizzesHTML = "";
 
