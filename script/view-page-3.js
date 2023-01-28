@@ -48,7 +48,7 @@ export const view3 = {
 
 
     </main>`
-    },createQuestions: function createQuestions() {
+    }, createQuestions: function createQuestions() {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
         let Number = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
 
@@ -101,7 +101,7 @@ export const view3 = {
 
     renderLevels: function renderLevels() {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
-        let Number = Number(
+        let inputNumberOfLevels = Number(
             window.document.querySelector('.container-informacoes input:nth-child(4)').value)
         for (let i = 1; i < inputNumberOfLevels; i++) {
             boxLevels.innerHTML += `
@@ -119,6 +119,7 @@ export const view3 = {
         }
     },
     createLevels: function createLevels() {
+        const questionStorage = [];
         const allCorrectAnswers = window.document.querySelectorAll(' .correct-answer');
         const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
         const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
@@ -131,7 +132,7 @@ export const view3 = {
         const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
         const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
         const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
-    
+
         for (let i = 0; i < allCorrectAnswers.length; i++) {
             const title = allQuestionTitles[i].value;
             const color = allQuestionColors[i].value;
@@ -143,7 +144,7 @@ export const view3 = {
             const url1 = allQuestionUrls1[i].value;
             const url2 = allQuestionUrls2[i].value;
             const url3 = allQuestionUrls3[i].value;
-    
+
             questionStorage.push({
                 title: title,
                 color: color,
@@ -160,7 +161,7 @@ export const view3 = {
                     },
                 ],
             });
-    
+
             if (wrong2 !== '' && wrong3 === '') {
                 questionStorage[i].answers.push({
                     text: wrong2,
@@ -189,6 +190,10 @@ export const view3 = {
         renderLevels();
     },
     renderSucess: function renderSucess() {
+        const inputTitle = document.querySelector('.paginainicial input').value;
+        const inputImage = document.querySelector(
+            '.paginainicial input:nth-child(2)'
+        ).value;
         const boxSucess = window.document.querySelector('.quartapagina .sucess-box');
         boxSucess.innerHTML = `
         <div class="quizz">
@@ -198,11 +203,86 @@ export const view3 = {
         </div>
       `;
     },
-    
-    accessQuizz :async function accessQuizz() {
+
+    finishQuizz: function finishQuizz() {
+        const allLevelMins = document.querySelectorAll('.level-min');
+        const allLevelUrls = document.querySelectorAll('.level-url');
+        const allLevelDescriptions = document.querySelectorAll(
+            '.level-description'
+        );
+        allLevelTitles = document.querySelectorAll('.level-title');
+        for (let i = 0; i < allLevelTitles.length; i++) {
+            levelTitles.push(allLevelTitles[i].value);
+            levelMins.push(allLevelMins[i].value);
+            levelUrls.push(allLevelUrls[i].value);
+            levelDescription.push(allLevelDescriptions[i].value);
+        }
+
+        const sucess = document.querySelector('quartapagina');
+        levelObjectCreate();
+        postQuizz();
+        levels.classList.add('hide');
+        levels.classList.remove('levels');
+        sucess.classList.remove('hide');
+        sucess.classList.add('sucess');
+        renderSucess();
+    },
+
+    levelObjectCreate: function levelObjectCreate() {
+        const levelStorage = [];
+        for (let i = 0; i < allLevelTitles.length; i++) {
+            levelStorage.push({
+                title: levelTitles[i],
+                image: levelUrls[i],
+                text: levelDescription[i],
+                minValue: levelMins[i],
+            });
+        }
+    },
+
+    backHome: function backHome() {
+        location.reload(true);
+    },
+
+    postQuizz: function postQuizz() {
+        const objectQuizzCreate = {
+            title: inputTitle,
+            image: inputImage,
+            questions: questionStorage,
+            levels: levelStorage,
+        };
+
+        const promise = axios.post(
+            'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
+            objectQuizzCreate
+        );
+
+        promise.catch((err) => console.log(err));
+        promise.then((res) => {
+            quizzAtual = res.data;
+            if (localStorage.length === 0) {
+                userQuizzes.push(res.data);
+                userQuizzesString = JSON.stringify(userQuizzes);
+                localStorage.setItem('userQuizzes', userQuizzesString);
+            } else {
+                const arrayAux = JSON.parse(localStorage.getItem('userQuizzes'));
+                arrayAux.push(res.data);
+                userQuizzesString = JSON.stringify(arrayAux);
+                localStorage.setItem('userQuizzes', userQuizzesString);
+            }
+        });
+    },
+
+
+
+
+
+
+
+    accessQuizz: async function accessQuizz() {
         const main = window.document.querySelector('main')
         console.log(main)
-     
+
         // const { image, title, questions } =  await createQuizz(quizz)
         // view.buildPage2(main, image, title, questions)
         // window.openQuizz(main)
