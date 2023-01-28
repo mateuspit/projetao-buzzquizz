@@ -72,4 +72,18 @@ export const view = {
             }
         }, []);
     },
+    mapQuestions: function mapQuestions(questions) {
+        return questions.reduce((acc, question, i) => {
+            let genQuestionID = newContainerID.next().value;
+            let id = `question-${genQuestionID}`;
+            const quizzContainer = this.createQuizzContainerTemplate(id).split("###!###");
+            let answerContainer = this.createAnswersContainers().split("###!###");
+            let answerContainer1 = this.createAnswersContainers().split("###!###");
+            let titleElement = this.createTitleTemplate(question.title, question.color);
+            let randomAnswers = generateRandomArray(question.answers);
+            let answers = this.mapAnswerItens(randomAnswers, genQuestionID, answerContainer, answerContainer1);
+            acc = [...acc, quizzContainer[0], titleElement, ...answers, quizzContainer[1]];
+            return acc;
+        }, []);
+    },
 }
