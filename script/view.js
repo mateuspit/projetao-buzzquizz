@@ -21,4 +21,11 @@ export const view = {
                         </div>
                 </div>`;
     },
+
+    createAnswersItems: function createAnswersItems({ image = '', text = '' }, id) { //DEVE SER JOGADA DENTRO DE UM DIV A CADA DUAS
+        return `<div id="answer-${id}"class="answer-item">
+                    <img onclick="selectAnswer(event)" src="${image}" alt="${text}"> 
+                    <p>${text}</p>
+                </div>`;
+    },
 }
