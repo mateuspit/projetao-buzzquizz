@@ -1,4 +1,20 @@
+import { generateContainerID, generateRandomArray } from './utils.js'
+
+let newContainerID = generateContainerID();
+let newAnswerID = generateContainerID();
+
 export const view = {
+    pageBlocks: [],
+    isCorrectAnswer: new Set(),
+    buildPage2: function buildPage2(mainContainer, image, title, questions) {
+        if (this.pageBlocks.length === 0) {
+            let mainTitle = this.createQuizzMainTitleTemplate(title, image);
+            this.pageBlocks.push(mainTitle);
+            let mappedQuestions = this.mapQuestions(questions)
+            this.pageBlocks = [...this.pageBlocks, ...mappedQuestions];
+        }
+        mainContainer.innerHTML = this.pageBlocks.join("");
+    },
     createQuizzMainTitleTemplate: function createQuizzMainTitleTemplate(title, image) {
         return `<p style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${image})">${title}</p>`;
     },
