@@ -3,7 +3,7 @@ import { generateContainerID, generateRandomArray } from './utils.js'
 let newContainerID = generateContainerID();
 let newAnswerID = generateContainerID();
 
-export const view = {
+export const view2 = {
     pageBlocks: [],
     isCorrectAnswer: new Set(),
     buildPage2: function buildPage2(mainContainer, image, title, questions) {
