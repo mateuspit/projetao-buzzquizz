@@ -14,4 +14,11 @@ export const view = {
                     <p>${title}</p>
                 </div>`;
     },
+    createAnswersContainers: function createAnswersContainers() {
+        return `<div class="answer-container">
+                        <div>
+                        ###!###
+                        </div>
+                </div>`;
+    },
 }
