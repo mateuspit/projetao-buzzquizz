@@ -8,5 +8,10 @@ export const view = {
                         ###!###
                     </div>
                 </div>`;
-    }
+    },
+    createTitleTemplate: function createTitleTemplate(title, color) {
+        return `<div style="background-color: ${color}">
+                    <p>${title}</p>
+                </div>`;
+    },
 }
