@@ -46,4 +46,30 @@ export const view = {
                     </div>
                 </div>`;
     },
+    mapAnswerItens: function mapAnswerItens(answers, genQuestionID, answerContainer, answerContainer1) {
+        return answers.reduce((ansAcc, ansItem, i, ansArr) => {
+            let newID = newAnswerID.next().value;
+            if (ansItem.isCorrectAnswer) {
+                this.isCorrectAnswer.add([genQuestionID, newID]);
+            }
+            let actual = this.createAnswersItems(ansItem, newID);                              //identificar os items de resposta pra pegar true/false
+            if (i === 0) {
+                ansAcc = [...ansAcc, answerContainer[0], actual];
+                return ansAcc;
+            } else if (i === 1) {
+                ansAcc = [...ansAcc, actual, answerContainer[1]];
+                return ansAcc;
+            } else if (i === 2 && ansArr.length === 3) {
+                ansAcc = [...ansAcc, answerContainer1[0], actual, answerContainer1[1]];
+                return ansAcc;
+            } else if (i === 2 && ansArr.length === 4) {
+                ansAcc = [...ansAcc, answerContainer1[0], actual];
+                return ansAcc;
+            } else if (i === 3 && ansArr.length === 4) {
+
+                ansAcc = [...ansAcc, actual, answerContainer1[1]];
+                return ansAcc;
+            }
+        }, []);
+    },
 }
