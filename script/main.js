@@ -42,3 +42,16 @@ window.resetQuizz = () => {
 window.hide = view3.hide
 window.accessQuizz = view3.accessQuizz
 window.selectAnswer = controller.selectAnswer
+window.createQuestions = view3.createQuestions
+window.createLevels = view3.createLevels
+window.renderLevels = view3.renderLevels
+window.finishQuizz = view3.finishQuizz
+
+window.allLevelTitles = view3.allLevelTitles
+window.levelTitles = view3.levelTitles
+
+window.numberOfQuestions = view3.numberOfQuestions
+window.questionStorage = view3.questionStorage
+window.numberLevels = view3.numberLevels
+
+

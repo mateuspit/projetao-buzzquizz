@@ -1,4 +1,9 @@
+import { createQuizz } from "./services.js";
+import {view2} from './view-page-2.js'
 export const view3 = {
+    numberLevels: "",
+    numberOfQuestions:"",
+    questionStorage:[],
     mountInitialPage: async function mountInitialPage() {
         return `   <header>
                         <p>BuzzQuiz</p>
@@ -17,7 +22,7 @@ export const view3 = {
                                 <input type="number" min="1" required title="Digite um número igual ou maior que 0"
                                     placeholder="Quantidade de níveis do quizz">
                             </div>
-                            <button onclick="hide(this)" onclick="createQuestions()">Prosseguir para criar perguntas</button>
+                            <button onclick="hide(this); createQuestions.call(window); createLevels.call(window);" >Prosseguir para criar perguntas</button>
                         </div>
                         <div class="segundapagina hide">
                             <div class="frase">
@@ -26,7 +31,7 @@ export const view3 = {
                             <div class="question-box">
 
                             </div>
-                            <button onclick="hide(this)" onclick="createLevels()">Prosseguir para criar níveis</button>
+                            <button onclick="hide(this); ">Prosseguir para criar níveis</button>
                         </div>
                         <div class="terceirapagina hide">
                             <div class="frase">
@@ -35,7 +40,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="hide(this)" onclick="renderSucess()">Finalizar o quizz</button>
+                            <button onclick="hide(this); finishQuizz.call(window); ">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -48,11 +53,16 @@ export const view3 = {
 
 
     </main>`
-    }, createQuestions: function createQuestions() {
+    }, 
+    createQuestions: function createQuestions() {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
-        let Number = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
+        this.numberLevels= Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
+        // console.log(Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value))
+        this.numberOfQuestions = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
 
-        for (let i = 0; i < Number; i++) {
+        console.log(this.numberLevels)
+        console.log(this.numberOfQuestions)
+        for (let i = 0; i < this.numberOfQuestions; i++) {
             boxQuestions.innerHTML += `
       <div class="question">
         <div class="titulo">
@@ -92,8 +102,7 @@ export const view3 = {
     hide: function hide(elemento) {
         let pagina = elemento.parentNode;
         let nextPagina = elemento.parentNode.nextSibling?.nextSibling;
-        console.log(pagina);
-        console.log(nextPagina);
+
         pagina.classList.add('hide');
         nextPagina.classList.remove('hide');
     },
@@ -101,26 +110,24 @@ export const view3 = {
 
     renderLevels: function renderLevels() {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
-        let inputNumberOfLevels = Number(
-            window.document.querySelector('.container-informacoes input:nth-child(4)').value)
-        for (let i = 1; i < inputNumberOfLevels; i++) {
+        for (let i = 0; i < window.numberLevels; i++) {
             boxLevels.innerHTML += `
-      <div class="level">
-        <div class="header">
-            <p>Nivel ${i + 1}</p>
-            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
-        </div>
-        <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
-        <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
-        <input type="url" class="level-url" required placeholder="URL da imagem do nível">
-        <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
-      </div>
-    `;
+                    <div class="level">
+                        <div class="header">
+                            <p>Nivel ${i+1}</p>
+                            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
+                        </div>
+                        <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
+                        <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
+                        <input type="url" class="level-url" required placeholder="URL da imagem do nível">
+                        <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
+                    </div>
+                    `;
         }
     },
     createLevels: function createLevels() {
-        const questionStorage = [];
-        const allCorrectAnswers = window.document.querySelectorAll(' .correct-answer');
+        this.questionStorage = [];
+        const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
         const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
         const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
         const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
@@ -145,7 +152,7 @@ export const view3 = {
             const url2 = allQuestionUrls2[i].value;
             const url3 = allQuestionUrls3[i].value;
 
-            questionStorage.push({
+            this.questionStorage.push({
                 title: title,
                 color: color,
                 answers: [
@@ -163,13 +170,13 @@ export const view3 = {
             });
 
             if (wrong2 !== '' && wrong3 === '') {
-                questionStorage[i].answers.push({
+                this.questionStorage[i].answers.push({
                     text: wrong2,
                     image: url2,
                     isCorrectAnswer: false,
                 });
             } else if (wrong2 !== '' && wrong3 !== '') {
-                questionStorage[i].answers.push(
+                this.questionStorage[i].answers.push(
                     {
                         text: wrong2,
                         image: url2,
@@ -183,53 +190,92 @@ export const view3 = {
                 );
             }
         }
-        questions.classList.add('hide');
-        questions.classList.remove('questions');
-        levels.classList.remove('hide');
-        levels.classList.add('levels');
+        // let questions = document.querySelector('questions')
+        // console.log("questions", questions)
+        // questions.classList.add('hide');
+        // questions.classList.remove('questions');
+        // levels.classList.remove('hide');
+        // levels.classList.add('levels');
         renderLevels();
     },
     renderSucess: function renderSucess() {
-        const inputTitle = document.querySelector('.paginainicial input').value;
-        const inputImage = document.querySelector(
+        this.inputTitle = document.querySelector('.paginainicial input').value;
+        this.inputImage = document.querySelector(
             '.paginainicial input:nth-child(2)'
         ).value;
         const boxSucess = window.document.querySelector('.quartapagina .sucess-box');
         boxSucess.innerHTML = `
         <div class="quizz">
           <div class="gradient"></div>
-          <img src="${inputImage}" alt="">
-          <p>${inputTitle}</p>
+          <img src="${this.inputImage}" alt="">
+          <p>${this.inputTitle}</p>
         </div>
       `;
     },
 
-    finishQuizz: function finishQuizz() {
-        const allLevelMins = document.querySelectorAll('.level-min');
-        const allLevelUrls = document.querySelectorAll('.level-url');
-        const allLevelDescriptions = document.querySelectorAll(
-            '.level-description'
-        );
-        allLevelTitles = document.querySelectorAll('.level-title');
-        for (let i = 0; i < allLevelTitles.length; i++) {
-            levelTitles.push(allLevelTitles[i].value);
-            levelMins.push(allLevelMins[i].value);
-            levelUrls.push(allLevelUrls[i].value);
-            levelDescription.push(allLevelDescriptions[i].value);
-        }
+    finishQuizz: async function finishQuizz() {
+        console.log(this.questionStorage)
+        console.log(this.inputTitle)
+        console.log(this.inputImage)
+        console.log(this.levelStorage)
+                const objectQuizzCreate = {
+            title: this.inputTitle,
+            image: this.inputImage,
+            questions: this.questionStorage,
+            levels: this.levelStorage,
+        };
+        const promise = await createQuizz(objectQuizzCreate)
+        // const promise = axios.post(
+            // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
+            // objectQuizzCreate
+        // );
 
-        const sucess = document.querySelector('quartapagina');
-        levelObjectCreate();
-        postQuizz();
-        levels.classList.add('hide');
-        levels.classList.remove('levels');
-        sucess.classList.remove('hide');
-        sucess.classList.add('sucess');
-        renderSucess();
+        promise.catch((err) => console.log(err));
+        promise.then((res) => {
+            quizzAtual = res.data;
+            if (localStorage.length === 0) {
+                userQuizzes.push(res.data);
+                userQuizzesString = JSON.stringify(userQuizzes);
+                localStorage.setItem('userQuizzes', userQuizzesString);
+            } else {
+                const arrayAux = JSON.parse(localStorage.getItem('userQuizzes'));
+                arrayAux.push(res.data);
+                userQuizzesString = JSON.stringify(arrayAux);
+                localStorage.setItem('userQuizzes', userQuizzesString);
+            }
+        });
+
+
+
+
+        // const  { image, title, questions, levels} = window.questionStorage
+        // const main = window.querySelector('main')
+        // view2.buildPage2(main, )
+        // const allLevelMins = document.querySelectorAll('.level-min');
+        // const allLevelUrls = document.querySelectorAll('.level-url');
+        // const allLevelDescriptions = document.querySelectorAll(
+        //     '.level-description'
+        // );
+        // allLevelTitles = document.querySelectorAll('.level-title');
+        // for (let i = 0; i < allLevelTitles.length; i++) {
+        //     levelTitles.push(allLevelTitles[i].value);
+        //     levelMins.push(allLevelMins[i].value);
+        //     levelUrls.push(allLevelUrls[i].value);
+        //     levelDescription.push(allLevelDescriptions[i].value);
+        // }
+
+        // const sucess = document.querySelector('quartapagina');
+        // levelObjectCreate();
+        // postQuizz();
+        // levels.classList.add('hide');
+        // levels.classList.remove('levels');
+        // sucess.classList.remove('hide');
+        // sucess.classList.add('sucess');
+        // renderSucess();
     },
 
     levelObjectCreate: function levelObjectCreate() {
-        const levelStorage = [];
+        window.levelStorage = [];
         for (let i = 0; i < allLevelTitles.length; i++) {
             levelStorage.push({
                 title: levelTitles[i],
@@ -251,11 +297,11 @@ export const view3 = {
             questions: questionStorage,
             levels: levelStorage,
         };
-
-        const promise = axios.post(
-            'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
-            objectQuizzCreate
-        );
+        const promise = createQuizz(objectQuizzCreate)
+        // const promise = axios.post(
+            // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
+            // objectQuizzCreate
+        // );
 
         promise.catch((err) => console.log(err));
         promise.then((res) => {
