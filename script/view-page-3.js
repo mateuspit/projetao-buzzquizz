@@ -14,12 +14,12 @@ export const view3 = {
                                 Comece pelo começo
                             </div>
                             <div class="container-informacoes">
-                                <input type="text" minlength="20" maxlength="65" required title="Digite entre 20 e 65"
+                                <input id="inputQuizzTitle" type="text" minlength="20" maxlength="65" required title="Digite entre 20 e 65"
                                     placeholder="Título do seu quizz">
-                                <input type="url" required title="Digite uma URL válida" placeholder="URL da imagem do seu quizz">
-                                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
+                                <input id="inputQuizzURL" type="url" required title="Digite uma URL válida" placeholder="URL da imagem do seu quizz">
+                                <input id="inputQuizzQuestions"type="number" min="1" required title="Digite um número igual ou maior que 0"
                                     placeholder="Quantidade de perguntas do quizz">
-                                <input type="number" min="1" required title="Digite um número igual ou maior que 0"
+                                <input id="inputQuizzLevels" type="number" min="1" required title="Digite um número igual ou maior que 0"
                                     placeholder="Quantidade de níveis do quizz">
                             </div>
                             <button onclick="hide(this); createQuestions.call(window); createLevels.call(window);" >Prosseguir para criar perguntas</button>
@@ -102,9 +102,48 @@ export const view3 = {
     hide: function hide(elemento) {
         let pagina = elemento.parentNode;
         let nextPagina = elemento.parentNode.nextSibling?.nextSibling;
+        let validTitle = false;
+        let validURL = false;
+        let validQuestions = false;
+        let validLevels = false;
+        let validPage31 = false;
 
-        pagina.classList.add('hide');
-        nextPagina.classList.remove('hide');
+        //variaveis da pagina 3.1
+        let valueQuizzTitle = document.getElementById('inputQuizzTitle').value;
+        // let valueQuizzURL = document.getElementById('inputQuizzURL').value;
+        let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
+        let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
+
+        //validando variaveis da primeira pagina
+        validTitle = (valueQuizzTitle.length <= 65) && (valueQuizzTitle.length >= 20);
+        // validURL = isValidUrl(valueQuizzURL);
+        validQuestions = (valueQuizzQuestions >= 3);
+        validLevels = (valueQuizzLevels >= 2);
+        // validPage31 = validTitle && validURL && validQuestions && validLevels;
+        validPage31 = validTitle && validQuestions && validLevels;
+
+        console.log(pagina);
+        console.log(nextPagina);
+        if(pagina.classList.contains("paginainicial")){
+            if(validPage31){
+                pagina.classList.add('hide');
+                nextPagina.classList.remove('hide');
+            }
+            else if (!validTitle){
+                alert("O titulo deve conter de 20 até 65 caracteres!");
+            }
+            // else if(!validURL){
+            //     alert("Coloquei uma URL valida!");
+            // }
+            else if(!validQuestions){
+                alert("Deve existir no minimo 3 questões!");
+            }
+            else if(!validLevels){
+                alert("Deve existir no minimo dois niveis!");
+            }
+        }
+        // pagina.classList.add('hide');
+        // nextPagina.classList.remove('hide');
     },
 
 
