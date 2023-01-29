@@ -233,7 +233,7 @@ body {
 }
 
 @media (max-width: 375px) {
-    form {
+    .main-screen-3 form {
         width: 100%;
     }
 
@@ -245,19 +245,19 @@ body {
         padding: 0;
     }
 
-    .button {
+    .main-screen-3 .button {
         width: 90%;
         margin-top: 29px;
     }
 
-    .sucess-box {
+    .main-screen-3 .sucess-box {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .sucess-box .quizz {
+    .main-screen-3 .sucess-box .quizz {
         width: 90%;
         height: 181px;
     }

@@ -12,7 +12,9 @@ const wonMatches = new Set()
 view1.mountFirstPage(quizzes, userId)
 window.goToCreationPage = async function goToCreationPage() {
     view1.cleanUpPage1Classess()
-    document.querySelector('body').innerHTML = await view3.mountInitialPage()
+    let body = document.querySelector('body')
+    body.classList.add('main-screen-3')
+    body.innerHTML = await view3.mountInitialPage()
 }
 
 window.goToPage2 = async function goToPage2(e) {
