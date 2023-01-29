@@ -23,7 +23,7 @@ export const controller = {
                 continue;
             }
             if (compareID(trueSolutionsID, answerID)) {
-                answerNode.style.backgroundColor = "green";
+                answerNode.querySelector('p').style.color = "green";
                 controller.wonMatches.add(questionIDstoCompare);
                 answers.forEach(answer => {
                     if (!compareID(answer.id, `answer-${answerID}`)) {
@@ -36,7 +36,7 @@ export const controller = {
                         if (!compareID(answer.id, `answer-${answerID}`)) {
                             answer.classList.add('red-opacity')
                         }
-                        answer.style.backgroundColor = "red"
+                        answer.querySelector('p').style.color = "red"
                     } else {
                         answer.classList.add('green-opacity')
                     }

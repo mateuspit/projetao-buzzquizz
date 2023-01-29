@@ -329,12 +329,20 @@ body {
 
 }
 
-.red-opacity {
-    background-color: red;
+.main-screen-2  .red-opacity {
+    color: red;
+    opacity: 0.3;
+}
+.main-screen-2 .red-opacity p{
+    color: red;
     opacity: 0.3;
 }
 
-.green-opacity {
-    background-color: green;
+.main-screen-2 .green-opacity{
+    color: green;
+    opacity: 0.3;
+}
+.main-screen-2 .green-opacity p{
+    color: green;
     opacity: 0.3;
 }
