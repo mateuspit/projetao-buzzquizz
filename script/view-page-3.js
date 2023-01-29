@@ -1,13 +1,14 @@
 import { createQuizz } from "./services.js";
-import {view2} from './view-page-2.js'
+import { view2 } from './view-page-2.js'
 export const view3 = {
     numberLevels: "",
-    numberOfQuestions:"",
-    questionStorage:[],
+    numberOfQuestions: "",
+    questionStorage: [],
     mountInitialPage: async function mountInitialPage() {
         return `   <header>
                         <p>BuzzQuiz</p>
                     </header>
+                    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
                     <main>
                         <div class="paginainicial">
                             <div class="frase">
@@ -53,10 +54,10 @@ export const view3 = {
 
 
     </main>`
-    }, 
+    },
     createQuestions: function createQuestions() {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
-        this.numberLevels= Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
+        this.numberLevels = Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
         // console.log(Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value))
         this.numberOfQuestions = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
 
@@ -153,7 +154,7 @@ export const view3 = {
             boxLevels.innerHTML += `
                     <div class="level">
                         <div class="header">
-                            <p>Nivel ${i+1}</p>
+                            <p>Nivel ${i + 1}</p>
                             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
                         </div>
                         <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
@@ -257,7 +258,7 @@ export const view3 = {
         console.log(this.inputTitle)
         console.log(this.inputImage)
         console.log(this.levelStorage)
-                const objectQuizzCreate = {
+        const objectQuizzCreate = {
             title: this.inputTitle,
             image: this.inputImage,
             questions: this.questionStorage,
@@ -265,8 +266,8 @@ export const view3 = {
         };
         const promise = await createQuizz(objectQuizzCreate)
         // const promise = axios.post(
-            // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
-            // objectQuizzCreate
+        // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
+        // objectQuizzCreate
         // );
 
         promise.catch((err) => console.log(err));
@@ -338,8 +339,8 @@ export const view3 = {
         };
         const promise = createQuizz(objectQuizzCreate)
         // const promise = axios.post(
-            // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
-            // objectQuizzCreate
+        // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
+        // objectQuizzCreate
         // );
 
         promise.catch((err) => console.log(err));
