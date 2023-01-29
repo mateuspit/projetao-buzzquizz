@@ -13,27 +13,27 @@ body {
     width: 100%;
 }
 
-.titleSection32{
+.titleSection32 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 20px;
-    color: #000000;     
+    color: #000000;
 }
 
-.rightAnswerBox32{
+.rightAnswerBox32 {
     margin-top: 28px;
     margin-left: 17px;
     margin-bottom: 28px;
 }
 
-.wrongAnswerBox32{
+.wrongAnswerBox32 {
     margin-top: 28px;
     margin-left: 17px;
-    margin-bottom: 28px;    
+    margin-bottom: 28px;
 }
 
-.inputs32{
-    height:46px;
+.inputs32 {
+    height: 46px;
     width: 564px;
     border: 1px solid #D1D1D1;
     border-radius: 5px;
@@ -54,33 +54,33 @@ body {
     color: #BABABA; 
 } */
 
-.questionBox32{
+.questionBox32 {
     margin-top: 27px;
     margin-left: 17px;
 }
 
-.openQuestionBox32{
-    
+.openQuestionBox32 {
+
     width: 600px;
     height: 825px;
     background-color: #ffffff;
 }
 
-.wrongQuestion32{
+.wrongQuestion32 {
     /* margin-top: 15px; */
     margin-bottom: 27px;
 }
 
-.header32{
+.header32 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 23px;
-    color: #000000;    
+    color: #000000;
     margin-top: 132px;
     margin-bottom: 36px;
 }
 
-.closeQuestionBox32{
+.closeQuestionBox32 {
     margin-top: 25px;
     width: 601px;
     height: 74px;
@@ -90,7 +90,7 @@ body {
     background-color: #ffffff;
 }
 
-.button32{
+.button32 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 21px;
@@ -107,15 +107,15 @@ body {
     margin-bottom: 468px;
 }
 
-.titleSection32{
+.titleSection32 {
     margin-left: 17px;
 }
 
-.icon32{
+.icon32 {
     margin-right: 25px;
 }
 
-.icon32{
+.icon32 {
     font-size: 30px;
 }
 
@@ -227,13 +227,11 @@ body {
     margin-bottom: 24px;
 }
 
-.main-screen-3 .questions .question p,
-.main-screen-3 .levels .level p {
+.main-screen-3 .question p,
+.main-screen-3 .level p {
+    margin-top: 28px;
     margin-left: 17px;
-    margin-bottom: 27px;
-    margin-top: 27px;
-    font-size: 20px;
-    font-weight: 700;
+    margin-bottom: 28px;
 }
 
 .main-screen-3 .question.selected {
@@ -248,6 +246,11 @@ body {
 .main-screen-3 .titulo {
     display: flex;
     justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+    margin-left: 17px;
 }
 
 .main-screen-3 .quartapagina {
@@ -340,15 +343,13 @@ body {
 
 .main-screen-3 .question,
 .main-screen-3 .level {
-    width: 100%;
-    height: 256px;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    padding-top: 21px;
-    border-radius: 5px;
+    width: 600px;
+    height: 825px;
+    background-color: #ffffff;
+    margin-top: 27px;
+    margin-left: 17px;
 }
+
 
 .main-screen-3 .question input,
 .level input {
@@ -385,6 +386,30 @@ body {
 
 .main-screen-3 .level-box {
     width: 100%;
+}
+
+.main-screen-3 .question-tile,
+.main-screen-3 .question-color,
+.main-screen-3 .correct-answer,
+.main-screen-3 .question-url-correct,
+.main-screen-3 .wrong-answer1,
+.main-screen-3 .question-url1,
+.main-screen-3 .question-url2,
+.main-screen-3 .question-url3,
+.main-screen-3 .wrong-answer1,
+.main-screen-3 .wrong-answer2,
+.main-screen-3 .wrong-answer3 {
+    height: 46px;
+    width: 564px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: italic;
+    color: #000000;
+    margin-top: 13px;
+    padding-left: 24px;
 }
 
 
