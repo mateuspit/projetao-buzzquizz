@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BuzzQuizz</title>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/style-2.css">
+        <link rel="stylesheet" href="./css/style-3.css">
+    
+    </head>
+<body class = "main-screen-3">
+    <header class = "main-screen-3">
+        <p>BuzzQuiz</p>
+    </header>
+    <main class = "main-screen-3">
+        <div class="paginainicial hide">
+            <div class="frase">
+                Comece pelo começo
+            </div>
+            <div class="container-informacoes">
+                <input id="inputQuizzTitle" type="text" minlength="20" maxlength="65" required="" title="Digite entre 20 e 65" placeholder="Título do seu quizz">
+                <input id="inputQuizzURL" type="url" required="" title="Digite uma URL válida" placeholder="URL da imagem do seu quizz">
+                <input id="inputQuizzQuestions" type="number" min="1" required="" title="Digite um número igual ou maior que 0" placeholder="Quantidade de perguntas do quizz">
+                <input id="inputQuizzLevels" type="number" min="1" required="" title="Digite um número igual ou maior que 0" placeholder="Quantidade de níveis do quizz">
+            </div>
+            <button onclick="hide(this); createQuestions.call(window); createLevels.call(window);">Prosseguir para criar perguntas</button>
+        </div>
+        <div class="segundapagina">
+            <div class="header32">
+                Crie suas perguntas
+            </div>
+            <div class="openQuestionBox32">
+                <div class="questionBox32">
+                    <div class="titleSection32">
+                        Pergunta 1
+                    </div>
+                    <input class="inputs32" type="text" placeholder="Texto da pergunta">
+                    <input class="inputs32" type="text" placeholder="Cor de fundo da pergunta">
+                </div>
+                <div class="rightAnswerBox32">
+                    <div class="titleSection32">
+                        Resposta certa                        
+                    </div>
+                    <input class="inputs32" type="text" placeholder="Resposta correta">
+                    <input class="inputs32" type="text" placeholder="URL da imagem">
+                </div>
+                <div class="wrongAnswerBox32">
+                    <div class="titleSection32">
+                        Respostas incorretas                        
+                    </div>
+                    <div class="wrongQuestion32">
+                        <input class="inputs32" type="text" placeholder="Resposta incorreta 1">
+                        <input class="inputs32" type="text" placeholder="URL da imagem 1">                        
+                    </div>
+                    <div class="wrongQuestion32">
+                        <input class="inputs32" type="text" placeholder="Resposta incorreta 2">
+                        <input class="inputs32" type="text" placeholder="URL da imagem 2">                            
+                    </div>
+                    <div class="wrongQuestion32">
+                        <input class="inputs32" type="text" placeholder="Resposta incorreta 3">
+                        <input class="inputs32" type="text" placeholder="URL da imagem 3">                            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="closeQuestionBox32">
+                <div class="titleSection32">
+                    Pergunta 2
+                </div>
+                <div class="icon32">
+                    <ion-icon name="create-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="button32">
+                Prosseguir pra criar níveis
+            </div>
+        </div>
+        <div class="terceirapagina hide">
+            <div class="frase">
+                Agora, decida os níveis
+            </div>
+            <div class="level-box">
+
+            
+    <div class="level">
+        <div class="header">
+            <p>Nivel 1</p>
+            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
+        </div>
+        <input type="text" class="level-title" minlength="10" required="" title="minimo de 10 letras" placeholder="Título do nível">
+        <input type="number" class="level-min" min="0" max="100" required="" placeholder="% de acerto mínima">
+        <input type="url" class="level-url" required="" placeholder="URL da imagem do nível">
+        <input type="text" class="level-description" minlength="30" required="" title="minimo de 30 letras" placeholder="Descrição do nível">
+    </div>
+    
+    <div class="level">
+        <div class="header">
+            <p>Nivel 2</p>
+            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
+        </div>
+        <input type="text" class="level-title" minlength="10" required="" title="minimo de 10 letras" placeholder="Título do nível">
+        <input type="number" class="level-min" min="0" max="100" required="" placeholder="% de acerto mínima">
+        <input type="url" class="level-url" required="" placeholder="URL da imagem do nível">
+        <input type="text" class="level-description" minlength="30" required="" title="minimo de 30 letras" placeholder="Descrição do nível">
+    </div>
+    </div>
+            <button onclick="hide(this); finishQuizz.call(window); ">Finalizar o quizz</button>
+        </div>
+        <div class="quartapagina hide">
+            <div class="frase">Seu quizz está pronto</div>
+            <div class="sucess-box">
+
+            </div>
+            <button onclick="accessQuizz()">Acessar Quizz</button>
+            <h2 onclick="onclick=" window.location.reload()""="">voltar pra home</h2>
+        </div>
+
+
+</main>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="./script/main.js"></script>
+</body>
+</html>
