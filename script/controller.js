@@ -52,8 +52,15 @@ export const controller = {
         }
         if (controller.doneQuestions.size === numberOfQuestions) {
             let score = generatePercentageScore(controller.wonMatches.size,numberOfQuestions)
-    
-            let statisticTemplate = view2.createStatisticMessageTemplate(score)
+            const levels  = view2.levels
+            let actualLevelIndex=0;
+            for (let i=0; i<levels.length;i++){
+                if (score>levels[i].minValue){
+                    actualLevelIndex=i
+                }
+            }
+            console.log(levels[actualLevelIndex])
+            let statisticTemplate = view2.createStatisticMessageTemplate(score, levels[actualLevelIndex])
             
             mainContainer.innerHTML+=statisticTemplate
             setTimeout(()=>{ 

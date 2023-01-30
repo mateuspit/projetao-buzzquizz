@@ -10,13 +10,16 @@ let userId = 18193
 const doneQuestions = new Set()
 const wonMatches = new Set()
 view1.mountFirstPage(quizzes, userId)
+
+console.log(quizzes)
+
+
 window.goToCreationPage = async function goToCreationPage() {
     view1.cleanUpPage1Classess()
     let body = document.querySelector('body')
     body.classList.add('main-screen-3')
     body.innerHTML = await view3.mountInitialPage()
 }
-
 window.goToPage2 = async function goToPage2(e) {
     let [user, itemID] = e.currentTarget.id.split('-')
     window.localStorage.setItem('actualQuizzID', itemID)
@@ -24,10 +27,10 @@ window.goToPage2 = async function goToPage2(e) {
     view1.cleanUpPage1Classess()
     let mainElement = document.querySelector('main')
     mainElement.classList.add('main-screen-2')
-    const { image, questions, title } = quizzes[itemID]
+    const { image, questions, title, levels } = quizzes[itemID]
 
     console.log()
-    view2.buildPage2(mainElement, image, title, questions)
+    view2.buildPage2(mainElement, image, title, questions, levels)
 }
 window.resetQuizz = () => {
 
@@ -46,10 +49,8 @@ window.createQuestions = view3.createQuestions
 window.createLevels = view3.createLevels
 window.renderLevels = view3.renderLevels
 window.finishQuizz = view3.finishQuizz
-
 window.allLevelTitles = view3.allLevelTitles
 window.levelTitles = view3.levelTitles
-
 window.numberOfQuestions = view3.numberOfQuestions
 window.questionStorage = view3.questionStorage
 window.numberLevels = view3.numberLevels

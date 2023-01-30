@@ -195,12 +195,7 @@ body {
     flex-wrap: nowrap;
 }
 
-.main-screen-2 .quizz-statistics div img {
-    flex: 1 1 51.05%;
-    min-height: 175.2px;
 
-    margin-bottom: 9px;
-}
 
 .main-screen-2 .quizz-statistics p {
     flex: 2 1 46%;
@@ -280,9 +275,15 @@ body {
     font-size: 17px;
     color: #484848;
 }
-
-@media (max-width:285px) {
+.main-screen-2 .quizz-statistics div img {
+    flex: 1 1 51.05%;
+    min-height: 175.2px;
+    max-width: 51.05%;
+    margin-bottom: 9px;
+}
+@media (max-width:400px) {
     .main-screen-2 .quizz-statistics div img {
+        max-width: 100%;
         width: 100%;
         min-height: 0px;
     }

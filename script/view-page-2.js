@@ -6,13 +6,14 @@ let newAnswerID = generateContainerID();
 export const view2 = {
     pageBlocks: [],
     isCorrectAnswer: new Set(),
-    buildPage2: function buildPage2(mainContainer, image, title, questions) {
+    buildPage2: function buildPage2(mainContainer, image, title, questions, levels) {
         if (this.pageBlocks.length === 0) {
             let mainTitle = this.createQuizzMainTitleTemplate(title, image);
             this.pageBlocks.push(mainTitle);
             let mappedQuestions = this.mapQuestions(questions)
             this.pageBlocks = [...this.pageBlocks, ...mappedQuestions];
         }
+        this.levels = levels
         mainContainer.innerHTML = this.pageBlocks.join("");
     },
     createQuizzMainTitleTemplate: function createQuizzMainTitleTemplate(title, image) {
@@ -44,15 +45,14 @@ export const view2 = {
                     <p>${text}</p>
                 </div>`;
     },
-    createStatisticMessageTemplate: function createStatisticMessageTemplate(score) {
+    createStatisticMessageTemplate: function createStatisticMessageTemplate(score,{title, image, text}) {
         return ` <div>
                     <div class="quizz-statistics">
-                        <p>${score}% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+                        <p>${score}% de acerto: ${title}</p>
 
                         <div>
-                            <img src="./img/gato.jpg" alt="gato">
-                            <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
-                                abaixo para usar o vira-tempo e reiniciar este teste.</p>
+                            <img src="${image}" alt="gato">
+                            <p>${text}</p>
                         </div>
                         <div onclick="resetQuizz()" class="button-container">
                             <button>Reiniciar Quizz</button>
