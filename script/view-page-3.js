@@ -41,7 +41,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="reload(); finishQuizz.call(window); ">Finalizar o quizz</button>
+                            <button onclick="finishQuizz.call(window);reload(); ">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
