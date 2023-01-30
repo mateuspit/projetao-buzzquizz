@@ -70,20 +70,22 @@ export const view3 = {
             <p>Pergunta ${i + 1}</p>
             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
         </div>
-        <input type="text" class="question-title" minlength="20" required title="minimo de 20 letras" placeholder="Texto da pergunta">
-        <input type="text" class="question-color" pattern="^\#([0-9]|[A-F]|[a-f]){6}$" required title="começar em #, seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F" placeholder="Cor de fundo da pergunta">
-        <p>Resposta correta</p>
-        <input type="text" class="correct-answer" required placeholder="Resposta correta">
-        <input type="url" class="question-url-correct" required placeholder="URL da imagem">
-        <p>Respostas incorretas</p>
-        <input type="text" class="wrong-answer1" required placeholder="Resposta incorreta 1">
-        <input type="url" class="question-url1" required placeholder="URL da imagem 1">
-        <br> <br>
-        <input type="text" class="wrong-answer2" placeholder="Resposta incorreta 2">
-        <input type="url" class="question-url2" placeholder="URL da imagem 2">
-        <br> <br>
-        <input type="text" class="wrong-answer3" placeholder="Resposta incorreta 3">
-        <input type="url" class="question-url3" placeholder="URL da imagem 3">
+        <div class="selected">
+           <input type="text" class="question-title" minlength="20" required title="minimo de 20 letras" placeholder="Texto da pergunta">
+           <input type="text" class="question-color" pattern="^\#([0-9]|[A-F]|[a-f]){6}$" required title="começar em #, seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F" placeholder="Cor de fundo da pergunta">
+           <p>Resposta correta</p>
+           <input type="text" class="correct-answer" required placeholder="Resposta correta">
+           <input type="url" class="question-url-correct" required placeholder="URL da imagem">
+           <p>Respostas incorretas</p>
+           <input type="text" class="wrong-answer1" required placeholder="Resposta incorreta 1">
+           <input type="url" class="question-url1" required placeholder="URL da imagem 1">
+           <br> <br>
+           <input type="text" class="wrong-answer2" placeholder="Resposta incorreta 2">
+           <input type="url" class="question-url2" placeholder="URL da imagem 2">
+           <br> <br>
+           <input type="text" class="wrong-answer3" placeholder="Resposta incorreta 3">
+           <input type="url" class="question-url3" placeholder="URL da imagem 3">
+        </div>
       </div>
     `;
         }
@@ -93,7 +95,7 @@ export const view3 = {
         const selected = window.document.querySelector('.selected');
         const question = req.parentNode.parentNode;
         if (selected) {
-            selected.classList.remove('selected');
+            selected.classList.add('hide');
             question.classList.add('selected');
         } else {
             question.classList.add('selected');
@@ -156,10 +158,12 @@ export const view3 = {
                             <p>Nivel ${i + 1}</p>
                             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
                         </div>
-                        <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
-                        <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
-                        <input type="url" class="level-url" required placeholder="URL da imagem do nível">
-                        <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
+                        <div class="selected">
+                           <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
+                           <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
+                           <input type="url" class="level-url" required placeholder="URL da imagem do nível">
+                           <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
+                        </div>
                     </div>
                     `;
         }
