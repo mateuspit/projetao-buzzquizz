@@ -1,17 +1,22 @@
 import { controller } from "./controller.js";
-import { getQuizzes } from "./services.js";
+import { getQuizzes, createQuizz } from "./services.js";
 import { view1 } from "./view-page-1.js";
 import { view2 } from "./view-page-2.js";
 import { view3 } from "./view-page-3.js";
-console.log(view1)
 
+
+let userId = window.localStorage.getItem('userID')
+if (userId){
+    window.localStorage.setItem('userID', JSON.stringify([]))
+}
+console.log(userId)
+// window.localStorage.setItem("userID",18193) 
 const quizzes = await getQuizzes() // COLETANDO TODOS OS QUIZZES DO DATABASE
-let userId = 18193
 const doneQuestions = new Set()
 const wonMatches = new Set()
 view1.mountFirstPage(quizzes, userId)
 
-console.log(quizzes)
+console.log(quizzes[0].questions)
 
 
 window.goToCreationPage = async function goToCreationPage() {

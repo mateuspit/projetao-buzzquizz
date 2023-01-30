@@ -114,7 +114,9 @@ export const view3 = {
         // let valueQuizzURL = document.getElementById('inputQuizzURL').value;
         let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
         let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
-
+        console.log(valueQuizzTitle)
+        console.log(valueQuizzQuestions)
+        console.log(valueQuizzLevels)
         //validando variaveis da primeira pagina
         validTitle = (valueQuizzTitle.length <= 65) && (valueQuizzTitle.length >= 20);
         // validURL = isValidUrl(valueQuizzURL);
@@ -122,24 +124,21 @@ export const view3 = {
         validLevels = (valueQuizzLevels >= 2);
         // validPage31 = validTitle && validURL && validQuestions && validLevels;
         validPage31 = validTitle && validQuestions && validLevels;
-
-        console.log(pagina);
-        console.log(nextPagina);
-        if(pagina.classList.contains("paginainicial")){
-            if(validPage31){
+        if (pagina.classList.contains("paginainicial")) {
+            if (validPage31) {
                 pagina.classList.add('hide');
                 nextPagina.classList.remove('hide');
             }
-            else if (!validTitle){
+            else if (!validTitle) {
                 alert("O titulo deve conter de 20 até 65 caracteres!");
             }
             // else if(!validURL){
             //     alert("Coloquei uma URL valida!");
             // }
-            else if(!validQuestions){
+            else if (!validQuestions) {
                 alert("Deve existir no minimo 3 questões!");
             }
-            else if(!validLevels){
+            else if (!validLevels) {
                 alert("Deve existir no minimo dois niveis!");
             }
         }
@@ -166,7 +165,7 @@ export const view3 = {
         }
     },
     createLevels: function createLevels() {
-        this.questionStorage = [];
+        view3.questionStorage = [];
         const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
         const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
         const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
@@ -192,7 +191,7 @@ export const view3 = {
             const url2 = allQuestionUrls2[i].value;
             const url3 = allQuestionUrls3[i].value;
 
-            this.questionStorage.push({
+            view3.questionStorage.push({
                 title: title,
                 color: color,
                 answers: [
@@ -210,13 +209,13 @@ export const view3 = {
             });
 
             if (wrong2 !== '' && wrong3 === '') {
-                this.questionStorage[i].answers.push({
+                view3.questionStorage[i].answers.push({
                     text: wrong2,
                     image: url2,
                     isCorrectAnswer: false,
                 });
             } else if (wrong2 !== '' && wrong3 !== '') {
-                this.questionStorage[i].answers.push(
+                view3.questionStorage[i].answers.push(
                     {
                         text: wrong2,
                         image: url2,
@@ -239,56 +238,140 @@ export const view3 = {
         renderLevels();
     },
     renderSucess: function renderSucess() {
-        this.inputTitle = document.querySelector('.paginainicial input').value;
-        this.inputImage = document.querySelector(
+        view3.inputTitle = document.querySelector('.paginainicial input').value;
+        view3.inputImage = document.querySelector(
             '.paginainicial input:nth-child(2)'
         ).value;
         const boxSucess = window.document.querySelector('.quartapagina .sucess-box');
         boxSucess.innerHTML = `
         <div class="quizz">
           <div class="gradient"></div>
-          <img src="${this.inputImage}" alt="">
-          <p>${this.inputTitle}</p>
+          <img src="${view3.inputImage}" alt="">
+          <p>${view3.inputTitle}</p>
         </div>
       `;
     },
 
     finishQuizz: async function finishQuizz() {
-        console.log(this.questionStorage)
-        console.log(this.inputTitle)
-        console.log(this.inputImage)
-        console.log(this.levelStorage)
+        const [quizzTitle, quizzImage] = document.querySelectorAll('.paginainicial .container-informacoes input')
+        const levelBoxItems = document.querySelectorAll('.terceirapagina .level-box input')
+
+
+        /*TIAGO*/
+        let questions = [];
+        const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
+        const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
+        const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
+        const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
+        const allQuestionColors = window.document.querySelectorAll('.question-color');
+        const allQuestionTitles = window.document.querySelectorAll('.question-title');
+        const allQuestionUrlsCorrects = window.document.querySelectorAll(
+            '.question-url-correct'
+        );
+        const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
+        const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
+        const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
+
+        for (let i = 0; i < allCorrectAnswers.length; i++) {
+            const title = allQuestionTitles[i].value;
+            const color = allQuestionColors[i].value;
+            const correct = allCorrectAnswers[i].value;
+            const urlCorrect = allQuestionUrlsCorrects[i].value;
+            const wrong1 = allWrongAnswers1[i].value;
+            const wrong2 = allWrongAnswers2[i].value;
+            const wrong3 = allWrongAnswers3[i].value;
+            const url1 = allQuestionUrls1[i].value;
+            const url2 = allQuestionUrls2[i].value;
+            const url3 = allQuestionUrls3[i].value;
+
+            questions.push({
+                title: title,
+                color: color,
+                answers: [
+                    {
+                        text: correct,
+                        image: urlCorrect,
+                        isCorrectAnswer: true,
+                    },
+                    {
+                        text: wrong1,
+                        image: url1,
+                        isCorrectAnswer: false,
+                    },
+                ],
+            });
+
+            if (wrong2 !== '' && wrong3 === '') {
+                questions[i].answers.push({
+                    text: wrong2,
+                    image: url2,
+                    isCorrectAnswer: false,
+                });
+            } else if (wrong2 !== '' && wrong3 !== '') {
+                questions[i].answers.push(
+                    {
+                        text: wrong2,
+                        image: url2,
+                        isCorrectAnswer: false,
+                    },
+                    {
+                        text: wrong3,
+                        image: url3,
+                        isCorrectAnswer: false,
+                    }
+                );
+            }
+        }
+
+        // fim tiago
+
+console.log(questions)
+
+        const levels = [...levelBoxItems].map(item => item.value).reduce((acc, item, i) => {
+            if ((i === 0) || (i % 4 === 0 && i > 2)) {
+                acc[0] = Object.assign(acc[0], { title: item })
+            } else if ((i === 1) || (i % 4 === 1 && i > 2)) {
+                acc[0] = Object.assign(acc[0], { minValue: item })
+            } else if ((i === 2) || (i % 4 === 2 && i > 2)) {
+                acc[0] = Object.assign(acc[0], { image: item })
+            } else if ((i === 3) || (i % 4 === 3 && i > 2)) {
+                acc[0] = Object.assign(acc[0], { text: item })
+            }
+            console.log("TAMANHO DO OBJ", Object.keys(acc[0]).length)
+            if (Object.keys(acc[0]).length === 4) {
+                acc[1].push(acc[0])
+                acc[0] = {}
+            }
+            return acc
+        }, [{}, []])
+        // view3.inputTitle = document.querySelector('.paginainicial input').value;
+        // view3.inputImage = document.querySelector('.paginainicial input:nth-child(2)').value;
+
         const objectQuizzCreate = {
-            title: this.inputTitle,
-            image: this.inputImage,
-            questions: this.questionStorage,
-            levels: this.levelStorage,
+            title: quizzTitle.value,
+            image: quizzImage.value,
+            questions: questions,
+            levels: levels[1],
         };
+        console.log(objectQuizzCreate)
+
         const promise = await createQuizz(objectQuizzCreate)
+
+        let userItems = window.localStorage.getItem("userID")
+        let newUserItems = JSON.parse(userItems)
+        newUserItems.push({[`${promise.id}`]: promise.key})
+        window.localStorage.setItem("userID", JSON.stringify(newUserItems))
+        console.log(promise)
+
+        // console.log(JSON.parse(window.localStorage.getItem("userID")))
         // const promise = axios.post(
         // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
         // objectQuizzCreate
         // );
 
-        promise.catch((err) => console.log(err));
-        promise.then((res) => {
-            quizzAtual = res.data;
-            if (localStorage.length === 0) {
-                userQuizzes.push(res.data);
-                userQuizzesString = JSON.stringify(userQuizzes);
-                localStorage.setItem('userQuizzes', userQuizzesString);
-            } else {
-                const arrayAux = JSON.parse(localStorage.getItem('userQuizzes'));
-                arrayAux.push(res.data);
-                userQuizzesString = JSON.stringify(arrayAux);
-                localStorage.setItem('userQuizzes', userQuizzesString);
-            }
-        });
 
 
-
-
-        // const  { image, title, questions, levels} = window.questionStorage
+        // const  { image, title, questions, levels} = view3.questionStorage
         // const main = window.querySelector('main')
         // view2.buildPage2(main, )
         // const allLevelMins = document.querySelectorAll('.level-min');
@@ -315,9 +398,9 @@ export const view3 = {
     },
 
     levelObjectCreate: function levelObjectCreate() {
-        window.levelStorage = [];
+        view3.levelStorage = [];
         for (let i = 0; i < allLevelTitles.length; i++) {
-            levelStorage.push({
+            view3.levelStorage.push({
                 title: levelTitles[i],
                 image: levelUrls[i],
                 text: levelDescription[i],
