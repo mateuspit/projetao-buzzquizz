@@ -6,7 +6,7 @@ import { view3 } from "./view-page-3.js";
 
 
 let userId = window.localStorage.getItem('userID')
-if (userId){
+if (!userId){
     window.localStorage.setItem('userID', JSON.stringify([]))
 }
 console.log(userId)
