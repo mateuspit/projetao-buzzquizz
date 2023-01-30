@@ -125,21 +125,21 @@ export const view3 = {
 
         console.log(pagina);
         console.log(nextPagina);
-        if(pagina.classList.contains("paginainicial")){
-            if(validPage31){
+        if (pagina.classList.contains("paginainicial")) {
+            if (validPage31) {
                 pagina.classList.add('hide');
                 nextPagina.classList.remove('hide');
             }
-            else if (!validTitle){
+            else if (!validTitle) {
                 alert("O titulo deve conter de 20 até 65 caracteres!");
             }
             // else if(!validURL){
             //     alert("Coloquei uma URL valida!");
             // }
-            else if(!validQuestions){
+            else if (!validQuestions) {
                 alert("Deve existir no minimo 3 questões!");
             }
-            else if(!validLevels){
+            else if (!validLevels) {
                 alert("Deve existir no minimo dois niveis!");
             }
         }
@@ -153,7 +153,7 @@ export const view3 = {
         for (let i = 0; i < window.numberLevels; i++) {
             boxLevels.innerHTML += `
                     <div class="level">
-                        <div class="header">
+                        <div class="titulo">
                             <p>Nivel ${i + 1}</p>
                             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
                         </div>

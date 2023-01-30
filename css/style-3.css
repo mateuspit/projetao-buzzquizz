@@ -243,7 +243,8 @@ body {
     margin-bottom: 12px;
 }
 
-.main-screen-3 .titulo {
+.main-screen-3 .titulo p,
+.main-screen-3 .question p {
     display: flex;
     justify-content: space-between;
     font-family: 'Roboto', sans-serif;
@@ -363,7 +364,7 @@ body {
     outline: none;
 }
 
-.main-screen-3 .header {
+.main-screen-3 .head {
     display: flex;
     justify-content: space-between;
 }
@@ -398,7 +399,11 @@ body {
 .main-screen-3 .question-url3,
 .main-screen-3 .wrong-answer1,
 .main-screen-3 .wrong-answer2,
-.main-screen-3 .wrong-answer3 {
+.main-screen-3 .wrong-answer3,
+.main-screen-3 .level-title,
+.main-screen-3 .level-min,
+.main-screen-3 .level-url,
+.main-screen-3 .level-description {
     height: 46px;
     width: 564px;
     border: 1px solid #D1D1D1;
@@ -411,6 +416,8 @@ body {
     margin-top: 13px;
     padding-left: 24px;
 }
+
+
 
 
 
