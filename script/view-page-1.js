@@ -2,8 +2,33 @@ export const view1 = {
     mountFirstPage: async function mountFirstPage(quizzes, userId) {
         this.mainElement = window.document.querySelector('.site')
         this.mainElement.innerHTML = "";
-        let userQuizzes;
-        userQuizzes = quizzes.filter(quiz => quiz.id === userId);
+        let userQuizzes = 0;
+        let foundQuizzes = 0;
+
+        // userQuizzes = quizzes.filter(quiz => quiz.id === userId);
+
+        console.log(quizzes);
+        console.log(userId);
+        console.log(quizzes.length);
+        console.log(userId.length);
+
+        console.log(quizzes[16].id);
+        console.log(userId[7]);
+        console.log(typeof quizzes[16].id);
+        console.log(typeof userId[7]);
+        let count = 0; 
+
+        
+        for(let i = 0; i < quizzes.length; i++){
+            for(let j = 0; j < userId.length; j++){
+                if(quizzes[i].id == userId[j]){
+                    // alert(userId[j]);
+                    // userQuizzes[count] = new Object(quizzes[i]);
+                    count++;
+                }
+            }
+        }
+
         this.mainElement.innerHTML = this.mountMainContainer();
         const elementAllQuizzesMenu = document.querySelector(".allQuizzesMenu");
         elementAllQuizzesMenu.innerHTML = "";

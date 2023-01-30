@@ -5,18 +5,22 @@ import { view2 } from "./view-page-2.js";
 import { view3 } from "./view-page-3.js";
 
 
-let userId = window.localStorage.getItem('userID')
+// let userId;
+let userId = JSON.parse(window.localStorage.getItem("userID")).map(item => {
+    const [id] = Object.keys(item);
+    return id;})
+
 if (!userId){
     window.localStorage.setItem('userID', JSON.stringify([]))
 }
-console.log(userId)
+// console.log(userId)
 // window.localStorage.setItem("userID",18193) 
 const quizzes = await getQuizzes() // COLETANDO TODOS OS QUIZZES DO DATABASE
 const doneQuestions = new Set()
 const wonMatches = new Set()
 view1.mountFirstPage(quizzes, userId)
 
-console.log(quizzes[0].questions)
+// console.log(quizzes[0].questions)
 
 
 window.goToCreationPage = async function goToCreationPage() {
