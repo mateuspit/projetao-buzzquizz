@@ -124,6 +124,12 @@ export const view3 = {
         validLevels = (valueQuizzLevels >= 2);
         // validPage31 = validTitle && validURL && validQuestions && validLevels;
         validPage31 = validTitle && validQuestions && validLevels;
+<<<<<<< HEAD
+=======
+
+        console.log(pagina);
+        console.log(nextPagina);
+>>>>>>> f338f0763865e68975d8e8a401c45efdb209895d
         if (pagina.classList.contains("paginainicial")) {
             if (validPage31) {
                 pagina.classList.add('hide');
@@ -325,7 +331,7 @@ export const view3 = {
 
         // fim tiago
 
-console.log(questions)
+        console.log(questions)
 
         const levels = [...levelBoxItems].map(item => item.value).reduce((acc, item, i) => {
             if ((i === 0) || (i % 4 === 0 && i > 2)) {
@@ -359,7 +365,7 @@ console.log(questions)
 
         let userItems = window.localStorage.getItem("userID")
         let newUserItems = JSON.parse(userItems)
-        newUserItems.push({[`${promise.id}`]: promise.key})
+        newUserItems.push({ [`${promise.id}`]: promise.key })
         window.localStorage.setItem("userID", JSON.stringify(newUserItems))
         console.log(promise)
 
