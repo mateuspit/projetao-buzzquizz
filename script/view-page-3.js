@@ -124,6 +124,12 @@ export const view3 = {
         validLevels = (valueQuizzLevels >= 2);
         // validPage31 = validTitle && validURL && validQuestions && validLevels;
         validPage31 = validTitle && validQuestions && validLevels;
+<<<<<<< HEAD
+=======
+
+        console.log(pagina);
+        console.log(nextPagina);
+>>>>>>> f338f0763865e68975d8e8a401c45efdb209895d
         if (pagina.classList.contains("paginainicial")) {
             if (validPage31) {
                 pagina.classList.add('hide');
@@ -152,7 +158,7 @@ export const view3 = {
         for (let i = 0; i < window.numberLevels; i++) {
             boxLevels.innerHTML += `
                     <div class="level">
-                        <div class="header">
+                        <div class="titulo">
                             <p>Nivel ${i + 1}</p>
                             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
                         </div>
