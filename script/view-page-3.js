@@ -71,7 +71,7 @@ export const view3 = {
             <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
         </div>
         <input type="text" class="question-title" minlength="20" required title="minimo de 20 letras" placeholder="Texto da pergunta">
-        <input type="text" class="question-color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{6})$" required title="começar em #, seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F" placeholder="Cor de fundo da pergunta">
+        <input type="text" class="question-color" pattern="^\#([0-9]|[A-F]|[a-f]){6}$" required title="começar em #, seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F" placeholder="Cor de fundo da pergunta">
         <p>Resposta correta</p>
         <input type="text" class="correct-answer" required placeholder="Resposta correta">
         <input type="url" class="question-url-correct" required placeholder="URL da imagem">
