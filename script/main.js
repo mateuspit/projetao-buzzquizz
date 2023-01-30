@@ -63,5 +63,6 @@ window.levelTitles = view3.levelTitles
 window.numberOfQuestions = view3.numberOfQuestions
 window.questionStorage = view3.questionStorage
 window.numberLevels = view3.numberLevels
+window.reload = view3.reload;
 
 

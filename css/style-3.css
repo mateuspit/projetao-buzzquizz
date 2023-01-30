@@ -151,7 +151,7 @@ body {
 }
 
 .main-screen-3 .frase {
-    width: 224px;
+    /* width: 224px; */
     height: 27px;
     margin-top: 140px;
     font-family: 'Roboto';
@@ -293,6 +293,8 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
+    margin-bottom: 50px;
 
     color: #FFF5F4;
 }

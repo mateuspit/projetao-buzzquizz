@@ -27,12 +27,12 @@ export const view3 = {
                         </div>
                         <div class="segundapagina hide">
                             <div class="frase">
-                                SEGUNDA PAGINA
+                                Preencha os dados sobre o seu Quizz abaixo
                             </div>
                             <div class="question-box">
 
                             </div>
-                            <button onclick="hide(this); ">Prosseguir para criar níveis</button>
+                            
                         </div>
                         <div class="terceirapagina hide">
                             <div class="frase">
@@ -41,7 +41,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="hide(this); finishQuizz.call(window); ">Finalizar o quizz</button>
+                            <button onclick="reload(); finishQuizz.call(window); ">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -54,6 +54,10 @@ export const view3 = {
 
 
     </main>`
+    },
+
+    reload: function reload(){
+        window.location.reload();
     },
     createQuestions: function createQuestions() {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
@@ -68,7 +72,6 @@ export const view3 = {
       <div class="question">
         <div class="titulo">
             <p>Pergunta ${i + 1}</p>
-            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
         </div>
         <div class="selected">
            <input type="text" class="question-title" minlength="20" required title="minimo de 20 letras" placeholder="Texto da pergunta">
@@ -110,6 +113,11 @@ export const view3 = {
         let validQuestions = false;
         let validLevels = false;
         let validPage31 = false;
+        let elementTerceiraPagina = document.querySelector(".terceirapagina");
+
+        // if(!(elementTerceiraPagina.contains(hide))){
+        //     window.location.reload();       
+        // }
 
         //variaveis da pagina 3.1
         let valueQuizzTitle = document.getElementById('inputQuizzTitle').value;
@@ -130,6 +138,7 @@ export const view3 = {
             if (validPage31) {
                 pagina.classList.add('hide');
                 nextPagina.classList.remove('hide');
+                elementTerceiraPagina.classList.remove('hide');
             }
             else if (!validTitle) {
                 alert("O titulo deve conter de 20 até 65 caracteres!");
@@ -156,7 +165,7 @@ export const view3 = {
                     <div class="level">
                         <div class="titulo">
                             <p>Nivel ${i + 1}</p>
-                            <ion-icon onclick="expandQuestion(this)" name="create-outline"></ion-icon>
+                            
                         </div>
                         <div class="selected">
                            <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
