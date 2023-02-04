@@ -13,7 +13,7 @@ body {
     width: 100%;
 }
 
-.titleQuestion32 {
+.titleQuestion32, .close-level{
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 20px;
@@ -86,7 +86,7 @@ body {
     margin-bottom: 36px;
 }
 
-.closeQuestionBox32 {
+.closeQuestionBox32, .close-level {
     margin-top: 25px;
     width: 601px;
     height: 74px;
@@ -249,8 +249,8 @@ body {
     margin-bottom: 28px;
 }
 
-.main-screen-3 .selected {
-    /* height: 825px; */
+.close-titulo {
+    margin-left: 17px;
 }
 
 .main-screen-3 .question.selected p,

@@ -2,7 +2,7 @@ import { createQuizz } from "./services.js";
 import { view2 } from './view-page-2.js'
 let currentQuestion = 1;
 let numberOfQuestions = 0;
-let numberLevels = 0;
+let currentLevels = 1;
 export const view3 = {
     numberLevels: "",
     numberOfQuestions: "",
@@ -44,7 +44,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="finishQuizz.call(window);reload(); ">Finalizar o quizz</button>
+                            <button onclick="finishQuizz.call(window)">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -239,29 +239,52 @@ export const view3 = {
     },
 
 
-    renderLevels: function renderLevels() {
+    renderLevels: function renderLevels(elemento) {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
+
         debugger
+        if(elemento !== undefined){
+            let elementCloselevel = elemento.parentNode.parentNode;
+            let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
+            elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g,'');
+            // console.log("Numero atual:  "+elementLevelNumber);
+            currentLevels = elementLevelNumber;
+        }
+
+        boxLevels.innerHTML = "";
+
         for (let i = 0; i < numberLevels; i++) {
-            console.log("não entendi: " +numberLevels);
-            boxLevels.innerHTML += `
+            // console.log("não entendi: " +numberLevels);currentLevels
+            if (i == (currentLevels-1)){
+                boxLevels.innerHTML += `
                     <div class="level">
                         <div class="titulo">
                             <p>Nivel ${i + 1}</p>
-                            
                         </div>
                         <div class="selected">
-                           <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível">
-                           <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima">
-                           <input type="url" class="level-url" required placeholder="URL da imagem do nível">
-                           <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível">
+                           <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível ${i+1}">
+                           <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima do nível ${i+1}">
+                           <input type="url" class="level-url" required placeholder="URL da imagem do nível ${i+1}">
+                           <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível ${i+1}">
                         </div>
                     </div>
-                    `;
+                `;
+            }
+            else{
+                boxLevels.innerHTML += `
+                <div class="close-level">
+                    <div class="close-titulo">Nível ${i+1}</div>
+                    <div class="icon32">
+                        <ion-icon onclick="renderLevels(this)" name="create-outline"></ion-icon>
+                    </div>
+                </div>
+                `;
+            }
         }
     },
     createLevels: function createLevels() {
         view3.questionStorage = [];
+        // alert("create levels");
         const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
         const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
         const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
@@ -421,7 +444,7 @@ export const view3 = {
 
         // fim tiago
 
-        console.log(questions)
+        // console.log(questions)
 
         const levels = [...levelBoxItems].map(item => item.value).reduce((acc, item, i) => {
             if ((i === 0) || (i % 4 === 0 && i > 2)) {
@@ -433,7 +456,7 @@ export const view3 = {
             } else if ((i === 3) || (i % 4 === 3 && i > 2)) {
                 acc[0] = Object.assign(acc[0], { text: item })
             }
-            console.log("TAMANHO DO OBJ", Object.keys(acc[0]).length)
+            // console.log("TAMANHO DO OBJ", Object.keys(acc[0]).length)
             if (Object.keys(acc[0]).length === 4) {
                 acc[1].push(acc[0])
                 acc[0] = {}
@@ -449,7 +472,7 @@ export const view3 = {
             questions: questions,
             levels: levels[1],
         };
-        console.log(objectQuizzCreate)
+        // console.log(objectQuizzCreate)
 
         const promise = await createQuizz(objectQuizzCreate)
 
