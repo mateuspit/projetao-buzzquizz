@@ -44,7 +44,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="finishQuizz.call(window)">Finalizar o quizz</button>
+                            <button onclick="hide(this); finishQuizz.call(window)">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -174,6 +174,7 @@ export const view3 = {
     },
 
     hide: function hide(elemento) {
+        debugger
         let pagina = elemento.parentNode;
         // console.log("PAGINA: "+pagina);
         if (pagina.classList.contains("question-box")) {
@@ -182,6 +183,9 @@ export const view3 = {
         let nextPagina = elemento.parentNode.nextSibling?.nextSibling;
         if (pagina.classList.contains("segundapagina")) {
             nextPagina = document.querySelector(".terceirapagina");            
+        }
+        else if(pagina.classList.contains("terceirapagina")){
+            nextPagina = document.querySelector(".quartapagina");             
         }
         // console.log("NEXT PAGINA: "+nextPagina);
         let validTitle = false;
@@ -233,6 +237,10 @@ export const view3 = {
             pagina.classList.add('hide');
             nextPagina.classList.remove('hide');            
         }
+        else if (pagina.classList.contains("terceirapagina")){
+            pagina.classList.add('hide');
+            nextPagina.classList.remove('hide');             
+        }
 
         // pagina.classList.add('hide');
         // nextPagina.classList.remove('hide');
@@ -242,7 +250,7 @@ export const view3 = {
     renderLevels: function renderLevels(elemento) {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
 
-        debugger
+        // debugger
         if(elemento !== undefined){
             let elementCloselevel = elemento.parentNode.parentNode;
             let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
