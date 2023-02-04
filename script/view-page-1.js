@@ -7,15 +7,15 @@ export const view1 = {
 
         // userQuizzes = quizzes.filter(quiz => quiz.id === userId);
 
-        console.log(quizzes);
-        console.log(userId);
-        console.log(quizzes.length);
-        console.log(userId.length);
+        // console.log(quizzes);
+        // console.log(userId);
+        // console.log(quizzes.length);
+        // console.log(userId.length);
 
-        console.log(quizzes[16].id);
-        console.log(userId[7]);
-        console.log(typeof quizzes[16].id);
-        console.log(typeof userId[7]);
+        // console.log(quizzes[16].id);
+        // console.log(userId[7]);
+        // console.log(typeof quizzes[16].id);
+        // console.log(typeof userId[7]);
         let count = 0; 
 
         

@@ -1,5 +1,7 @@
 import { createQuizz } from "./services.js";
 import { view2 } from './view-page-2.js'
+let currentQuestion = 1;
+let numberOfQuestions = 0;
 export const view3 = {
     numberLevels: "",
     numberOfQuestions: "",
@@ -59,39 +61,104 @@ export const view3 = {
     reload: function reload(){
         window.location.reload();
     },
-    createQuestions: function createQuestions() {
+    createQuestions: function createQuestions(elemento) {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
-        this.numberLevels = Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
-        // console.log(Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value))
-        this.numberOfQuestions = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
-
-        console.log(this.numberLevels)
-        console.log(this.numberOfQuestions)
-        for (let i = 0; i < this.numberOfQuestions; i++) {
-            boxQuestions.innerHTML += `
-      <div class="question">
-        <div class="titulo">
-            <p>Pergunta ${i + 1}</p>
-        </div>
-        <div class="selected">
-           <input type="text" class="question-title" minlength="20" required title="minimo de 20 letras" placeholder="Texto da pergunta">
-           <input type="text" class="question-color" pattern="^\#([0-9]|[A-F]|[a-f]){6}$" required title="começar em #, seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F" placeholder="Cor de fundo da pergunta">
-           <p>Resposta correta</p>
-           <input type="text" class="correct-answer" required placeholder="Resposta correta">
-           <input type="url" class="question-url-correct" required placeholder="URL da imagem">
-           <p>Respostas incorretas</p>
-           <input type="text" class="wrong-answer1" required placeholder="Resposta incorreta 1">
-           <input type="url" class="question-url1" required placeholder="URL da imagem 1">
-           <br> <br>
-           <input type="text" class="wrong-answer2" placeholder="Resposta incorreta 2">
-           <input type="url" class="question-url2" placeholder="URL da imagem 2">
-           <br> <br>
-           <input type="text" class="wrong-answer3" placeholder="Resposta incorreta 3">
-           <input type="url" class="question-url3" placeholder="URL da imagem 3">
-        </div>
-      </div>
-    `;
+        if(elemento !== undefined){
+            let elementCloseQuestionBox32 = elemento.parentNode;
+            let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
+            elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g,'');
+            console.log(elementQuestionNumber);
+            currentQuestion = elementQuestionNumber;
         }
+        // this.numberLevels = Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
+        // console.log(Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value))
+        // this.numberOfQuestions = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
+        boxQuestions.innerHTML = "";
+
+        
+
+        // console.log(this.numberLevels)
+        // console.log(this.numberOfQuestions)
+        for (let i = 0; i < numberOfQuestions; i++) {
+            if (i == (currentQuestion-1)){
+                // currentQuestion++;
+                boxQuestions.innerHTML += `
+                <div class="openQuestionBox32">
+                    <div class="questionBox32">
+                        <div id="openQuestionTitle" class="titleQuestion32">
+                        </div>
+                        <div class="inputsQuestion32">
+                        </div>
+                    </div>
+                    <div class="rightAnswerBox32">
+                        <div class="titleQuestion32">
+                            Resposta certa                        
+                        </div>
+                        <div class="inputsRightQuestions32">
+                        </div>
+                    </div>
+                    <div class="wrongAnswerBox32">
+                        <div class="titleQuestion32">
+                            Respostas incorretas                        
+                        </div>
+                        <div class="firstWrongQuestion32">                      
+                        </div>
+                        <div class="secondWrongQuestion32">                        
+                        </div>
+                        <div class="thirdWrongQuestion32">                        
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        const elementTitleQuestion32 = document.querySelector("#openQuestionTitle");
+        const elementInputsQuestion32 = document.querySelector(".inputsQuestion32");
+        const elementInputsRightQuestions32 = document.querySelector(".inputsRightQuestions32");
+        const elementFirstWrongQuestion32 = document.querySelector(".firstWrongQuestion32");
+        const elementSecondWrongQuestion32 = document.querySelector(".secondWrongQuestion32");
+        const elementThirdWrongQuestion32 = document.querySelector(".thirdWrongQuestion32");
+
+            elementTitleQuestion32.innerHTML += `
+            Pergunta ${i+1}
+        `;
+            elementInputsQuestion32.innerHTML += `
+            <input id="question32-${i+1}" class="question-title" type="text" placeholder="Texto da pergunta ${i+1}">
+            <input id="backgroundColor32-${i+1}" class="question-color" type="text" placeholder="Cor de fundo da pergunta ${i+1}">
+        `;
+            elementInputsRightQuestions32.innerHTML += `
+            <input id="rightAnswer32-${i+1}" class="correct-answer" type="text" placeholder="Resposta correta da pergunta ${i+1}">
+            <input id="rightURL32-${i+1}" class="question-url-correct" type="text" placeholder="URL da imagem da pergunta ${i+1}">
+        `;
+            elementFirstWrongQuestion32.innerHTML += `
+            <input id="firstWrongQuestion32-${i+1}" class="wrong-answer1" type="text" placeholder="Resposta incorreta 1 da pergunta ${i+1}">
+            <input id="firstWrongURL32-${i+1}" class="question-url1" type="text" placeholder="URL da imagem 1 da pergunta ${i+1}">   
+        `;
+            elementSecondWrongQuestion32.innerHTML += `
+            <input id="secondWrongQuestion32-${i+1}" class="wrong-answer2" type="text" placeholder="Resposta incorreta 2 da pergunta ${i+1}">
+            <input id="secondWrongURL32-${i+1}" class="question-url2" type="text" placeholder="URL da imagem 2 da pergunta ${i+1}"> 
+        `;
+            elementThirdWrongQuestion32.innerHTML += `
+            <input id="thirdWrongQuestion32-${i+1}" class="wrong-answer3" type="text" placeholder="Resposta incorreta 3 da pergunta ${i+1}">
+            <input id="thirdWrongURL32-${i+1}" class="question-url3" type="text" placeholder="URL da imagem 3 da pergunta ${i+1}">   
+        `;
+        }
+        else{
+            boxQuestions.innerHTML += `
+            <div class="closeQuestionBox32">
+                <div class="titleQuestion32">Pergunta ${i+1}</div>
+                <div onclick="createQuestions(this)" class="icon32">
+                    <ion-icon onclick="hide(this)" name="create-outline"></ion-icon>
+                </div>
+            </div>
+            `;
+        }
+    
+        }
+        boxQuestions.innerHTML += `
+                <div class="button32" onclick="hide(this)" >
+                    Prosseguir pra criar níveis
+                </div>
+                `;
     },
 
     expandQuestion: function expandQuestion(req) {
@@ -113,20 +180,19 @@ export const view3 = {
         let validQuestions = false;
         let validLevels = false;
         let validPage31 = false;
-        let elementTerceiraPagina = document.querySelector(".terceirapagina");
+        // let elementTerceiraPagina = document.querySelector(".terceirapagina");
+        debugger
 
-        // if(!(elementTerceiraPagina.contains(hide))){
-        //     window.location.reload();       
-        // }
 
         //variaveis da pagina 3.1
         let valueQuizzTitle = document.getElementById('inputQuizzTitle').value;
         // let valueQuizzURL = document.getElementById('inputQuizzURL').value;
         let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
+        numberOfQuestions = valueQuizzQuestions;
         let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
-        console.log(valueQuizzTitle)
-        console.log(valueQuizzQuestions)
-        console.log(valueQuizzLevels)
+        // console.log(valueQuizzTitle)
+        // console.log(valueQuizzQuestions)
+        // console.log(valueQuizzLevels)
         //validando variaveis da primeira pagina
         validTitle = (valueQuizzTitle.length <= 65) && (valueQuizzTitle.length >= 20);
         // validURL = isValidUrl(valueQuizzURL);
@@ -138,7 +204,7 @@ export const view3 = {
             if (validPage31) {
                 pagina.classList.add('hide');
                 nextPagina.classList.remove('hide');
-                elementTerceiraPagina.classList.remove('hide');
+                // elementTerceiraPagina.classList.remove('hide');
             }
             else if (!validTitle) {
                 alert("O titulo deve conter de 20 até 65 caracteres!");
