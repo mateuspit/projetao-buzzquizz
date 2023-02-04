@@ -3,6 +3,7 @@ import { view2 } from './view-page-2.js'
 let currentQuestion = 1;
 let numberOfQuestions = 0;
 let currentLevels = 1;
+let quizzURL = "";
 export const view3 = {
     numberLevels: "",
     numberOfQuestions: "",
@@ -44,7 +45,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="hide(this); finishQuizz.call(window)">Finalizar o quizz</button>
+                            <button onclick="hide(this); renderSucess(); finishQuizz.call(window);">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -52,7 +53,7 @@ export const view3 = {
 
                             </div>
                             <button onclick="accessQuizz()">Acessar Quizz</button>
-                            <h2 onclick="onclick="window.location.reload()"">voltar pra home</h2>
+                            <h2 onclick="window.location.reload()">Voltar pra home</h2>
                         </div>
 
 
@@ -174,7 +175,7 @@ export const view3 = {
     },
 
     hide: function hide(elemento) {
-        debugger
+        // debugger
         let pagina = elemento.parentNode;
         // console.log("PAGINA: "+pagina);
         if (pagina.classList.contains("question-box")) {
@@ -198,7 +199,8 @@ export const view3 = {
 
         //variaveis da pagina 3.1
         let valueQuizzTitle = document.getElementById('inputQuizzTitle').value;
-        // let valueQuizzURL = document.getElementById('inputQuizzURL').value;
+        let valueQuizzURL = document.getElementById('inputQuizzURL').value;
+        quizzURL = valueQuizzURL;
         let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
         numberOfQuestions = valueQuizzQuestions;
         let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
@@ -239,7 +241,9 @@ export const view3 = {
         }
         else if (pagina.classList.contains("terceirapagina")){
             pagina.classList.add('hide');
-            nextPagina.classList.remove('hide');             
+            nextPagina.classList.remove('hide');
+            // let elementSucessBox = document.querySelector(".sucess-box");
+            // elementSucessBox.innerHTML = 
         }
 
         // pagina.classList.add('hide');
@@ -365,6 +369,8 @@ export const view3 = {
         renderLevels();
     },
     renderSucess: function renderSucess() {
+        debugger
+        alert("Teste");
         view3.inputTitle = document.querySelector('.paginainicial input').value;
         view3.inputImage = document.querySelector(
             '.paginainicial input:nth-child(2)'
@@ -374,7 +380,9 @@ export const view3 = {
         <div class="quizz">
           <div class="gradient"></div>
           <img src="${view3.inputImage}" alt="">
-          <p>${view3.inputTitle}</p>
+          <div class="quizzFinishedTitle">
+            ${view3.inputTitle}
+          </div>
         </div>
       `;
     },

@@ -109,11 +109,6 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #EC362D;
-    margin-top: 81px;
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: auto;
     margin-top: 81px;
     margin-bottom: 100px;
@@ -175,7 +170,7 @@ body {
     display: flex;
     align-items: center;
     color: #000000;
-    margin-bottom: 36px;
+    /* margin-bottom: 36px; */
 }
 
 .main-screen-3 .container-informacoes {
@@ -319,6 +314,20 @@ body {
     color: #FFF5F4;
 }
 
+h2{
+    width: 220px;
+    height: 44px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    text-align: center;
+    margin-top: 20px;
+    color: #818181;
+    cursor: pointer;
+}
+
 .main-screen-3 .quartapagina button {
     width: 368.86px;
     height: 54px;
@@ -332,14 +341,21 @@ body {
     line-height: 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
 
     color: #FFF5F4;
 }
 
-.main-screen-3 .quizz {
-    width: 500px;
-    height: 266px;
+.main-screen-3 .quizz img{
+    width: 340px;
+    height: 181px;
+}
+
+.main-screen-3 .quizz{
+    width: 340px;
+    height: 181px;
+    position: relative;
 }
 
 .main-screen-3 .hide {
@@ -354,11 +370,27 @@ body {
     text-align: center;
     width: 600px;
 }
+.quizz img{
+    position:relative;
+}
+
+.quizzFinishedTitle{
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: italic;
+    color: white;
+    bottom: 20px;
+    left: 20px;
+    z-index: 11;
+}
 
 .main-screen-3 .quizz .gradient {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    z-index: 10;
+    width: 340px;
+    height: 181px;
     background-color: black;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     border-radius: 8px;
