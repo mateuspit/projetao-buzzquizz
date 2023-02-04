@@ -2,6 +2,7 @@ import { createQuizz } from "./services.js";
 import { view2 } from './view-page-2.js'
 let currentQuestion = 1;
 let numberOfQuestions = 0;
+let numberLevels = 0;
 export const view3 = {
     numberLevels: "",
     numberOfQuestions: "",
@@ -25,7 +26,7 @@ export const view3 = {
                                 <input id="inputQuizzLevels" type="number" min="1" required title="Digite um número igual ou maior que 0"
                                     placeholder="Quantidade de níveis do quizz">
                             </div>
-                            <button onclick="hide(this); createQuestions.call(window); createLevels.call(window);" >Prosseguir para criar perguntas</button>
+                            <button onclick="hide(this); createQuestions.call(window);" >Prosseguir para criar perguntas</button>
                         </div>
                         <div class="segundapagina hide">
                             <div class="frase">
@@ -67,7 +68,7 @@ export const view3 = {
             let elementCloseQuestionBox32 = elemento.parentNode;
             let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
             elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g,'');
-            console.log(elementQuestionNumber);
+            // console.log(elementQuestionNumber);
             currentQuestion = elementQuestionNumber;
         }
         // this.numberLevels = Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
@@ -147,7 +148,7 @@ export const view3 = {
             <div class="closeQuestionBox32">
                 <div class="titleQuestion32">Pergunta ${i+1}</div>
                 <div onclick="createQuestions(this)" class="icon32">
-                    <ion-icon onclick="hide(this)" name="create-outline"></ion-icon>
+                    <ion-icon name="create-outline"></ion-icon>
                 </div>
             </div>
             `;
@@ -155,7 +156,7 @@ export const view3 = {
     
         }
         boxQuestions.innerHTML += `
-                <div class="button32" onclick="hide(this)" >
+                <div class="button32"  onclick="hide(this); createLevels.call(window);" >
                     Prosseguir pra criar níveis
                 </div>
                 `;
@@ -174,14 +175,21 @@ export const view3 = {
 
     hide: function hide(elemento) {
         let pagina = elemento.parentNode;
+        // console.log("PAGINA: "+pagina);
+        if (pagina.classList.contains("question-box")) {
+            pagina = pagina.parentNode;            
+        }
         let nextPagina = elemento.parentNode.nextSibling?.nextSibling;
+        if (pagina.classList.contains("segundapagina")) {
+            nextPagina = document.querySelector(".terceirapagina");            
+        }
+        // console.log("NEXT PAGINA: "+nextPagina);
         let validTitle = false;
         let validURL = false;
         let validQuestions = false;
         let validLevels = false;
         let validPage31 = false;
         // let elementTerceiraPagina = document.querySelector(".terceirapagina");
-        debugger
 
 
         //variaveis da pagina 3.1
@@ -190,6 +198,7 @@ export const view3 = {
         let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
         numberOfQuestions = valueQuizzQuestions;
         let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
+        numberLevels = valueQuizzLevels;
         // console.log(valueQuizzTitle)
         // console.log(valueQuizzQuestions)
         // console.log(valueQuizzLevels)
@@ -219,6 +228,12 @@ export const view3 = {
                 alert("Deve existir no minimo dois niveis!");
             }
         }
+        else if (pagina.classList.contains("segundapagina")){
+            // debugger
+            pagina.classList.add('hide');
+            nextPagina.classList.remove('hide');            
+        }
+
         // pagina.classList.add('hide');
         // nextPagina.classList.remove('hide');
     },
@@ -226,7 +241,9 @@ export const view3 = {
 
     renderLevels: function renderLevels() {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
-        for (let i = 0; i < window.numberLevels; i++) {
+        debugger
+        for (let i = 0; i < numberLevels; i++) {
+            console.log("não entendi: " +numberLevels);
             boxLevels.innerHTML += `
                     <div class="level">
                         <div class="titulo">
