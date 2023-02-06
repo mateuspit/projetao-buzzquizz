@@ -41,19 +41,17 @@ window.goToPage2 = async function goToPage2(e) {
     console.log()
     view2.buildPage2(mainElement, image, title, questions, levels)
 }
-// onclick="goToPage2AfterFinish(event, 1)"
-// window.goToPage2AfterFinish = async function goToPage2(e) {
-//     let [user, itemID] = e.currentTarget.id.split('-')
-//     window.localStorage.setItem(0)
-//     const isUser = user === 'user'
-//     view1.cleanUpPage1Classess()
-//     let mainElement = document.querySelector('main')
-//     mainElement.classList.add('main-screen-2')
-//     const { image, questions, title, levels } = quizzes[itemID]
+    
+// onclick="goToPage2AfterFinish()"
+export async function goToPage2AfterFinish() {
+    const quizzes = await getQuizzes();
+  
+    const { image, questions, title, levels } = quizzes[0];
+  
+    console.log(quizzes[0]);
+    view2.buildPage2(mainElement, image, title, questions, levels);
+  }
 
-//     console.log()
-//     view2.buildPage2(mainElement, image, title, questions, levels)
-// }
 window.resetQuizz = () => {
 
     let mainContainer = document.querySelector('main')
@@ -84,5 +82,6 @@ window.getQuestionsData = view3.getQuestionsData;
 window.analyzeUserInDataLevels = view3.analyzeUserInDataLevels;
 window.getLevelsData = view3.getLevelsData;
 window.validHexQuestionColor = view3.validHexQuestionColor;
+window.goToPage2AfterFinish = view3.goToPage2AfterFinish;
 
 

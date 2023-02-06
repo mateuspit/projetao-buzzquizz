@@ -1,4 +1,5 @@
 import { createQuizz } from "./services.js";
+import { goToPage2AfterFinish } from "./main.js";
 import { view2 } from './view-page-2.js'
 let currentQuestion = 1;
 // let pastQuestion = 1;
@@ -82,7 +83,7 @@ export const view3 = {
                             <div class="sucess-box">
 
                             </div>
-                            <button  onclick="goToPage2AfterFinish(event, 1)"">Acessar Quizz</button>
+                            <button  onclick="goToPage2AfterFinish()" >Acessar Quizz</button>
                             <h2 onclick="window.location.reload()">Voltar pra home</h2>
                         </div>
 
