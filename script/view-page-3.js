@@ -233,6 +233,16 @@ export const view3 = {
             question.classList.add('selected');
         }
     },
+    validHexQuestionColor: function validHexQuestionColor(){
+        let questionColor = document.querySelector(".question-color").value;
+        let validSize = questionColor.length === 7;
+        let isValidHexDecColor = str => /^#?[0-9A-Fa-f]+$/.test(str);
+        let validColor = isValidHexDecColor(questionColor.slice(0, 7)); 
+        console.log(validSize);
+        console.log(validColor);
+        return (validSize&&validColor);
+
+    },
     analyzeUserInData: function analyzeUserInData(elemento) {
         // debugger;
         let elementCloseQuestionBox32 = elemento.parentNode;
@@ -252,12 +262,12 @@ export const view3 = {
         // class="question-url3"
         let validQuestionTitle, validQuestionColor, validCorrectAnswer, validQuestionUrlCorrect, validWrongAnswer1, validQuestionUrl1, validAllDataIn = false;
 
-        validQuestionTitle = !!document.querySelector(".question-title").value;
-        validQuestionColor = !!document.querySelector(".question-color").value;
+        validQuestionTitle = (document.querySelector(".question-title").value.length) >= 20;
+        validQuestionColor = validHexQuestionColor();
         validCorrectAnswer = !!document.querySelector(".correct-answer").value;
-        validQuestionUrlCorrect = !!document.querySelector(".question-url-correct").value;
+        validQuestionUrlCorrect = isValidUrl(document.querySelector(".question-url-correct").value);
         validWrongAnswer1 = !!document.querySelector(".wrong-answer1").value;
-        validQuestionUrl1 = !!document.querySelector(".question-url1").value;
+        validQuestionUrl1 = isValidUrl(document.querySelector(".question-url1").value);
         validAllDataIn = validQuestionTitle && validQuestionColor && validCorrectAnswer && validQuestionUrlCorrect && validWrongAnswer1 && validQuestionUrl1;
         
         // if(validAllDataIn && (elemento.classList.contains("icon32"))){
@@ -269,6 +279,19 @@ export const view3 = {
             }
             numberOfAnsweredQuestion++;                
         }
+        else if(!validQuestionTitle){
+            alert("Coloque a sua pergunta com pelo menos 20 caracteres!");
+        }
+        else if(!validQuestionColor){
+            alert("Coloque uma cor em hexadecimal, no formato #000000!");
+        }
+        else if(!validQuestionUrlCorrect){
+            alert("Coloque uma URL valida de uma imagem na pergunta correta");
+        }
+        else if(!validQuestionUrl1){
+            alert("Coloque uma URL valida de uma imagem na primeira pergunta errada");
+        }
+        
         else {
             alert("Faltam dados");
         }
@@ -389,7 +412,7 @@ export const view3 = {
             text: document.querySelector(".level-description").value,
             minValue: document.querySelector(".level-min").value
         };
-        console.log("objto todo: ",sendableObject);
+        // console.log("objto todo: ",sendableObject);
         // console.log("questions: ",sendableObject.questions);
         // console.log("levels: ",sendableObject.levels);
     },
