@@ -68,5 +68,7 @@ window.renderSucess = view3.renderSucess;
 window.isValidUrl = view3.isValidUrl;
 window.analyzeUserInData = view3.analyzeUserInData;
 window.getQuestionsData = view3.getQuestionsData;
+window.analyzeUserInDataLevels = view3.analyzeUserInDataLevels;
+window.getLevelsData = view3.getLevelsData;
 
 

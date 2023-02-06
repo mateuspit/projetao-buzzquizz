@@ -4,8 +4,12 @@ let currentQuestion = 1;
 // let pastQuestion = 1;
 let sendableObject = {};
 sendableObject.questions = [];
+sendableObject.levels = [];
 let numberOfAnsweredQuestion = 0;
-let validAllQuestionAnswered = false;
+let numberOfFullFillLevel = 0;
+let title;
+// let image;
+// let validAllQuestionAnswered = false;
 let numberOfQuestions = 0;
 let currentLevels = 1;
 let quizzURL = "";
@@ -70,7 +74,7 @@ export const view3 = {
                             <div class="level-box">
 
                             </div>
-                            <button onclick="hide(this); renderSucess(); finishQuizz.call(window);">Finalizar o quizz</button>
+                            <button class= "button33"onclick="analyzeUserInDataLevels(this); hide(this); renderSucess(); ">Finalizar o quizz</button>
                         </div>
                         <div class="quartapagina hide">
                             <div class="frase">Seu quizz está pronto</div>
@@ -94,7 +98,6 @@ export const view3 = {
         //     let elementCloseQuestionBox32 = elemento.parentNode;
         //     let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
         //     elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g, '');
-        //     // console.log(elementQuestionNumber);
         //     currentQuestion = elementQuestionNumber;
         // }
 
@@ -135,8 +138,6 @@ export const view3 = {
 
 
 
-        // console.log(this.numberLevels)
-        // console.log(this.numberOfQuestions)
         for (let i = 0; i < numberOfQuestions; i++) {
             if (i == (currentQuestion - 1)) {
                 // currentQuestion++;
@@ -233,12 +234,11 @@ export const view3 = {
         }
     },
     analyzeUserInData: function analyzeUserInData(elemento) {
-        debugger;
+        // debugger;
         let elementCloseQuestionBox32 = elemento.parentNode;
         
         let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
         elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g, '');
-        // console.log(elementQuestionNumber);
         // currentQuestion = elementQuestionNumber;
         // class="question-title"
         // class="question-color"
@@ -258,10 +258,8 @@ export const view3 = {
         validQuestionUrlCorrect = !!document.querySelector(".question-url-correct").value;
         validWrongAnswer1 = !!document.querySelector(".wrong-answer1").value;
         validQuestionUrl1 = !!document.querySelector(".question-url1").value;
-        // console.log(document.querySelector(".wrong-answer2").value);
         validAllDataIn = validQuestionTitle && validQuestionColor && validCorrectAnswer && validQuestionUrlCorrect && validWrongAnswer1 && validQuestionUrl1;
         
-        console.log((elemento.classList.contains("icon32")));
         // if(validAllDataIn && (elemento.classList.contains("icon32"))){
         if(validAllDataIn){
             getQuestionsData();
@@ -269,8 +267,7 @@ export const view3 = {
                 currentQuestion = elementQuestionNumber;
                 createQuestions();  
             }
-            numberOfAnsweredQuestion++;
-            console.log(numberOfAnsweredQuestion);                        
+            numberOfAnsweredQuestion++;                
         }
         else {
             alert("Faltam dados");
@@ -283,16 +280,6 @@ export const view3 = {
 
     },
     getQuestionsData: function getQuestionsData(){
-        // validQuestionTitle = !!document.querySelector(".question-title").value;
-        // validQuestionColor = !!document.querySelector(".question-color").value;
-        // validCorrectAnswer = !!document.querySelector(".correct-answer").value;
-        // validQuestionUrlCorrect = !!document.querySelector(".question-url-correct").value;
-        // validWrongAnswer1 = !!document.querySelector(".wrong-answer1").value;
-        // validQuestionUrl1 = !!document.querySelector(".question-url1").value;
-        console.log("currentQuestion"+currentQuestion);
-        console.log("sendableobject"+sendableObject);
-        console.log("sendableobjectquestion"+sendableObject.questions);
-
         sendableObject.questions[currentQuestion-1] = {
             title: document.querySelector(".question-title").value,
             color: document.querySelector(".question-color").value,
@@ -307,13 +294,11 @@ export const view3 = {
                 isCorrectAnswer: false
             }]
         };
-        console.log(sendableObject)
     },
 
     hide: function hide(elemento) {
         // debugger
         let pagina = elemento.parentNode;
-        // console.log("PAGINA: "+pagina);
         if (pagina.classList.contains("question-box")) {
             pagina = pagina.parentNode;
         }
@@ -324,7 +309,6 @@ export const view3 = {
         else if (pagina.classList.contains("terceirapagina")) {
             nextPagina = document.querySelector(".quartapagina");
         }
-        // console.log("NEXT PAGINA: "+nextPagina);
         let validTitle = false;
         let validURL = false;
         let validQuestions = false;
@@ -335,25 +319,23 @@ export const view3 = {
 
         //variaveis da pagina 3.1
         let valueQuizzTitle = document.getElementById('inputQuizzTitle').value;
+        title = valueQuizzTitle
         let valueQuizzURL = document.getElementById('inputQuizzURL').value;
         quizzURL = valueQuizzURL;
         let valueQuizzQuestions = document.getElementById('inputQuizzQuestions').value;
         numberOfQuestions = valueQuizzQuestions;
         let valueQuizzLevels = document.getElementById('inputQuizzLevels').value;
         numberLevels = valueQuizzLevels;
-        // console.log(valueQuizzTitle)
-        // console.log(valueQuizzQuestions)
-        // console.log(valueQuizzLevels)
         //validando variaveis da primeira pagina
         validTitle = (valueQuizzTitle.length <= 65) && (valueQuizzTitle.length >= 20);
         validURL = isValidUrl(valueQuizzURL);
-        // console.log(validURL);
         validQuestions = (valueQuizzQuestions >= 3);
         validLevels = (valueQuizzLevels >= 2);
         validPage31 = validTitle && validURL && validQuestions && validLevels;
         // validPage31 = validTitle && validQuestions && validLevels;
         // let validPage32 = false;
         // validPage32Function()
+        debugger;
         if (pagina.classList.contains("paginainicial")) {
             if (validPage31) {
                 pagina.classList.add('hide');
@@ -361,6 +343,9 @@ export const view3 = {
                 // elementTerceiraPagina.classList.remove('hide');
                 for (let i = 0; i < numberOfQuestions; i++) {
                     sendableObject.questions[i] = {};
+                }
+                for (let i = 0; i < numberLevels; i++) {
+                    sendableObject.levels[i] = {};
                 }
             }
             else if (!validTitle) {
@@ -381,35 +366,79 @@ export const view3 = {
             pagina.classList.add('hide');
             nextPagina.classList.remove('hide');
         }
-        else if (pagina.classList.contains("terceirapagina")) {
+        else if (pagina.classList.contains("terceirapagina") && ((numberOfFullFillLevel) == numberLevels)) {
+            finishQuizz.call(window);
             pagina.classList.add('hide');
             nextPagina.classList.remove('hide');
         }
         else if (!(numberOfAnsweredQuestion == numberOfQuestions)){
             alert(`Insira dados em todas as ${numberOfQuestions} perguntas`);
         }
+        else if (!(numberOfFullFillLevel == numberLevels)){
+            alert(`Insira os dados de todos os ${numberLevels} levels`);            
+        }
 
         // pagina.classList.add('hide');
         // nextPagina.classList.remove('hide');
     },
 
+    getLevelsData: function getLevelsData(){
+        sendableObject.levels[currentLevels-1] = {
+            title: document.querySelector(".level-title").value,
+            image: document.querySelector(".level-url").value,
+            text: document.querySelector(".level-description").value,
+            minValue: document.querySelector(".level-min").value
+        };
+        console.log("objto todo: ",sendableObject);
+        // console.log("questions: ",sendableObject.questions);
+        // console.log("levels: ",sendableObject.levels);
+    },
+    analyzeUserInDataLevels: function analyzeUserInDataLevels(elemento){
+        debugger;
+        let elementCloselevel = elemento.parentNode.parentNode;
+        let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
+        elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g, '');
+        // currentLevels = elementLevelNumber;
+        // console.log(currentLevels);
+        // class="level-title"
+        // class="level-min"
+        // class="level-url"
+        // class="level-description"
+        let validLevelTitle, validLevelMin, validLevelUrl, validDescription, validAllDataLevelIn = false;
+
+        validLevelTitle = !!document.querySelector(".level-title").value;
+        validLevelMin = !!document.querySelector(".level-min").value;
+        validLevelUrl = !!document.querySelector(".level-url").value;
+        validDescription = !!document.querySelector(".level-description").value;
+        validAllDataLevelIn = validLevelTitle && validLevelMin && validLevelUrl && validDescription;
+        if(validAllDataLevelIn){
+            getLevelsData();
+            if(!elemento.classList.contains("button33")){
+                currentLevels = elementLevelNumber;
+                renderLevels();  
+            }
+            numberOfFullFillLevel++;            
+            console.log(numberOfFullFillLevel); 
+        }
+        else {
+            alert("Faltam dados");
+        }
+
+    },
+
 
     renderLevels: function renderLevels(elemento) {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
-
         
-        if (elemento !== undefined) {
-            let elementCloselevel = elemento.parentNode.parentNode;
-            let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
-            elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g, '');
-            // console.log("Numero atual:  "+elementLevelNumber);
-            currentLevels = elementLevelNumber;
-        }
+        // if (elemento !== undefined) {
+            
+        // }
+
+        // analyzeUserInDataLevels();
 
         boxLevels.innerHTML = "";
 
         for (let i = 0; i < numberLevels; i++) {
-            // console.log("não entendi: " +numberLevels);currentLevels
             if (i == (currentLevels - 1)) {
                 boxLevels.innerHTML += `
                     <div class="level">
@@ -430,7 +459,7 @@ export const view3 = {
                 <div class="close-level">
                     <div class="close-titulo">Nível ${i + 1}</div>
                     <div class="icon32">
-                        <ion-icon onclick="renderLevels(this)" name="create-outline"></ion-icon>
+                        <ion-icon onclick="analyzeUserInDataLevels(this)" name="create-outline"></ion-icon>
                     </div>
                 </div>
                 `;
@@ -440,71 +469,70 @@ export const view3 = {
     createLevels: function createLevels() {
         view3.questionStorage = [];
         // alert("create levels");
-        const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
-        const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
-        const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
-        const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
-        const allQuestionColors = window.document.querySelectorAll('.question-color');
-        const allQuestionTitles = window.document.querySelectorAll('.question-title');
-        const allQuestionUrlsCorrects = window.document.querySelectorAll(
-            '.question-url-correct'
-        );
-        const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
-        const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
-        const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
+        // const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
+        // const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
+        // const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
+        // const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
+        // const allQuestionColors = window.document.querySelectorAll('.question-color');
+        // const allQuestionTitles = window.document.querySelectorAll('.question-title');
+        // const allQuestionUrlsCorrects = window.document.querySelectorAll(
+        //     '.question-url-correct'
+        // );
+        // const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
+        // const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
+        // const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
 
-        for (let i = 0; i < allCorrectAnswers.length; i++) {
-            const title = allQuestionTitles[i].value;
-            const color = allQuestionColors[i].value;
-            const correct = allCorrectAnswers[i].value;
-            const urlCorrect = allQuestionUrlsCorrects[i].value;
-            const wrong1 = allWrongAnswers1[i].value;
-            const wrong2 = allWrongAnswers2[i].value;
-            const wrong3 = allWrongAnswers3[i].value;
-            const url1 = allQuestionUrls1[i].value;
-            const url2 = allQuestionUrls2[i].value;
-            const url3 = allQuestionUrls3[i].value;
+        // for (let i = 0; i < allCorrectAnswers.length; i++) {
+        //     const title = allQuestionTitles[i].value;
+        //     const color = allQuestionColors[i].value;
+        //     const correct = allCorrectAnswers[i].value;
+        //     const urlCorrect = allQuestionUrlsCorrects[i].value;
+        //     const wrong1 = allWrongAnswers1[i].value;
+        //     const wrong2 = allWrongAnswers2[i].value;
+        //     const wrong3 = allWrongAnswers3[i].value;
+        //     const url1 = allQuestionUrls1[i].value;
+        //     const url2 = allQuestionUrls2[i].value;
+        //     const url3 = allQuestionUrls3[i].value;
 
-            view3.questionStorage.push({
-                title: title,
-                color: color,
-                answers: [
-                    {
-                        text: correct,
-                        image: urlCorrect,
-                        isCorrectAnswer: true,
-                    },
-                    {
-                        text: wrong1,
-                        image: url1,
-                        isCorrectAnswer: false,
-                    },
-                ],
-            });
+        //     view3.questionStorage.push({
+        //         title: title,
+        //         color: color,
+        //         answers: [
+        //             {
+        //                 text: correct,
+        //                 image: urlCorrect,
+        //                 isCorrectAnswer: true,
+        //             },
+        //             {
+        //                 text: wrong1,
+        //                 image: url1,
+        //                 isCorrectAnswer: false,
+        //             },
+        //         ],
+        //     });
 
-            if (wrong2 !== '' && wrong3 === '') {
-                view3.questionStorage[i].answers.push({
-                    text: wrong2,
-                    image: url2,
-                    isCorrectAnswer: false,
-                });
-            } else if (wrong2 !== '' && wrong3 !== '') {
-                view3.questionStorage[i].answers.push(
-                    {
-                        text: wrong2,
-                        image: url2,
-                        isCorrectAnswer: false,
-                    },
-                    {
-                        text: wrong3,
-                        image: url3,
-                        isCorrectAnswer: false,
-                    }
-                );
-            }
-        }
+        //     if (wrong2 !== '' && wrong3 === '') {
+        //         view3.questionStorage[i].answers.push({
+        //             text: wrong2,
+        //             image: url2,
+        //             isCorrectAnswer: false,
+        //         });
+        //     } else if (wrong2 !== '' && wrong3 !== '') {
+        //         view3.questionStorage[i].answers.push(
+        //             {
+        //                 text: wrong2,
+        //                 image: url2,
+        //                 isCorrectAnswer: false,
+        //             },
+        //             {
+        //                 text: wrong3,
+        //                 image: url3,
+        //                 isCorrectAnswer: false,
+        //             }
+        //         );
+        //     }
+        // }
         // let questions = document.querySelector('questions')
-        // console.log("questions", questions)
         // questions.classList.add('hide');
         // questions.classList.remove('questions');
         // levels.classList.remove('hide');
@@ -534,147 +562,109 @@ export const view3 = {
     },
 
     finishQuizz: async function finishQuizz() {
-        const [quizzTitle, quizzImage] = document.querySelectorAll('.paginainicial .container-informacoes input')
-        const levelBoxItems = document.querySelectorAll('.terceirapagina .level-box input')
+        // const [quizzTitle, quizzImage] = document.querySelectorAll('.paginainicial .container-informacoes input')
+        // const levelBoxItems = document.querySelectorAll('.terceirapagina .level-box input')
+
+        // let questions = [];
+        // const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
+        // const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
+        // const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
+        // const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
+        // const allQuestionColors = window.document.querySelectorAll('.question-color');
+        // const allQuestionTitles = window.document.querySelectorAll('.question-title');
+        // const allQuestionUrlsCorrects = window.document.querySelectorAll(
+        //     '.question-url-correct'
+        // );
+        // const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
+        // const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
+        // const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
+
+        // for (let i = 0; i < allCorrectAnswers.length; i++) {
+        //     const title = allQuestionTitles[i].value;
+        //     const color = allQuestionColors[i].value;
+        //     const correct = allCorrectAnswers[i].value;
+        //     const urlCorrect = allQuestionUrlsCorrects[i].value;
+        //     const wrong1 = allWrongAnswers1[i].value;
+        //     const wrong2 = allWrongAnswers2[i].value;
+        //     const wrong3 = allWrongAnswers3[i].value;
+        //     const url1 = allQuestionUrls1[i].value;
+        //     const url2 = allQuestionUrls2[i].value;
+        //     const url3 = allQuestionUrls3[i].value;
+
+        //     questions.push({
+        //         title: title,
+        //         color: color,
+        //         answers: [
+        //             {
+        //                 text: correct,
+        //                 image: urlCorrect,
+        //                 isCorrectAnswer: true,
+        //             },
+        //             {
+        //                 text: wrong1,
+        //                 image: url1,
+        //                 isCorrectAnswer: false,
+        //             },
+        //         ],
+        //     });
+
+        //     if (wrong2 !== '' && wrong3 === '') {
+        //         questions[i].answers.push({
+        //             text: wrong2,
+        //             image: url2,
+        //             isCorrectAnswer: false,
+        //         });
+        //     } else if (wrong2 !== '' && wrong3 !== '') {
+        //         questions[i].answers.push(
+        //             {
+        //                 text: wrong2,
+        //                 image: url2,
+        //                 isCorrectAnswer: false,
+        //             },
+        //             {
+        //                 text: wrong3,
+        //                 image: url3,
+        //                 isCorrectAnswer: false,
+        //             }
+        //         );
+        //     }
+        // }
 
 
-        /*TIAGO*/
-        let questions = [];
-        const allCorrectAnswers = window.document.querySelectorAll('.correct-answer');
-        const allWrongAnswers1 = window.document.querySelectorAll('.wrong-answer1');
-        const allWrongAnswers2 = window.document.querySelectorAll('.wrong-answer2');
-        const allWrongAnswers3 = window.document.querySelectorAll('.wrong-answer3');
-        const allQuestionColors = window.document.querySelectorAll('.question-color');
-        const allQuestionTitles = window.document.querySelectorAll('.question-title');
-        const allQuestionUrlsCorrects = window.document.querySelectorAll(
-            '.question-url-correct'
-        );
-        const allQuestionUrls1 = window.document.querySelectorAll('.question-url1');
-        const allQuestionUrls2 = window.document.querySelectorAll('.question-url2');
-        const allQuestionUrls3 = window.document.querySelectorAll('.question-url3');
+        // const levels = [...levelBoxItems].map(item => item.value).reduce((acc, item, i) => {
+        //     if ((i === 0) || (i % 4 === 0 && i > 2)) {
+        //         acc[0] = Object.assign(acc[0], { title: item })
+        //     } else if ((i === 1) || (i % 4 === 1 && i > 2)) {
+        //         acc[0] = Object.assign(acc[0], { minValue: item })
+        //     } else if ((i === 2) || (i % 4 === 2 && i > 2)) {
+        //         acc[0] = Object.assign(acc[0], { image: item })
+        //     } else if ((i === 3) || (i % 4 === 3 && i > 2)) {
+        //         acc[0] = Object.assign(acc[0], { text: item })
+        //     }
+        //     if (Object.keys(acc[0]).length === 4) {
+        //         acc[1].push(acc[0])
+        //         acc[0] = {}
+        //     }
+        //     return acc
+        // }, [{}, []])
 
-        for (let i = 0; i < allCorrectAnswers.length; i++) {
-            const title = allQuestionTitles[i].value;
-            const color = allQuestionColors[i].value;
-            const correct = allCorrectAnswers[i].value;
-            const urlCorrect = allQuestionUrlsCorrects[i].value;
-            const wrong1 = allWrongAnswers1[i].value;
-            const wrong2 = allWrongAnswers2[i].value;
-            const wrong3 = allWrongAnswers3[i].value;
-            const url1 = allQuestionUrls1[i].value;
-            const url2 = allQuestionUrls2[i].value;
-            const url3 = allQuestionUrls3[i].value;
+        // const objectQuizzCreate = {
+        //     title: quizzTitle.value,
+        //     image: quizzImage.value,
+        //     questions: questions,
+        //     levels: levels[1],
+        // };
+        sendableObject.image = quizzURL;
+        sendableObject.title = title;
+        console.log(sendableObject);
 
-            questions.push({
-                title: title,
-                color: color,
-                answers: [
-                    {
-                        text: correct,
-                        image: urlCorrect,
-                        isCorrectAnswer: true,
-                    },
-                    {
-                        text: wrong1,
-                        image: url1,
-                        isCorrectAnswer: false,
-                    },
-                ],
-            });
-
-            if (wrong2 !== '' && wrong3 === '') {
-                questions[i].answers.push({
-                    text: wrong2,
-                    image: url2,
-                    isCorrectAnswer: false,
-                });
-            } else if (wrong2 !== '' && wrong3 !== '') {
-                questions[i].answers.push(
-                    {
-                        text: wrong2,
-                        image: url2,
-                        isCorrectAnswer: false,
-                    },
-                    {
-                        text: wrong3,
-                        image: url3,
-                        isCorrectAnswer: false,
-                    }
-                );
-            }
-        }
-
-        // fim tiago
-
-        // console.log(questions)
-
-        const levels = [...levelBoxItems].map(item => item.value).reduce((acc, item, i) => {
-            if ((i === 0) || (i % 4 === 0 && i > 2)) {
-                acc[0] = Object.assign(acc[0], { title: item })
-            } else if ((i === 1) || (i % 4 === 1 && i > 2)) {
-                acc[0] = Object.assign(acc[0], { minValue: item })
-            } else if ((i === 2) || (i % 4 === 2 && i > 2)) {
-                acc[0] = Object.assign(acc[0], { image: item })
-            } else if ((i === 3) || (i % 4 === 3 && i > 2)) {
-                acc[0] = Object.assign(acc[0], { text: item })
-            }
-            // console.log("TAMANHO DO OBJ", Object.keys(acc[0]).length)
-            if (Object.keys(acc[0]).length === 4) {
-                acc[1].push(acc[0])
-                acc[0] = {}
-            }
-            return acc
-        }, [{}, []])
-        // view3.inputTitle = document.querySelector('.paginainicial input').value;
-        // view3.inputImage = document.querySelector('.paginainicial input:nth-child(2)').value;
-
-        const objectQuizzCreate = {
-            title: quizzTitle.value,
-            image: quizzImage.value,
-            questions: questions,
-            levels: levels[1],
-        };
-        // console.log(objectQuizzCreate)
-
-        const promise = await createQuizz(objectQuizzCreate)
+        
+        const promise = await createQuizz(sendableObject);
 
         let userItems = window.localStorage.getItem("userID")
         let newUserItems = JSON.parse(userItems)
         newUserItems.push({ [`${promise.id}`]: promise.key })
         window.localStorage.setItem("userID", JSON.stringify(newUserItems))
-        // console.log(promise)
-        // console.log(JSON.parse(window.localStorage.getItem("userID")))
-        // const promise = axios.post(
-        // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
-        // objectQuizzCreate
-        // );
-
-
-
-        // const  { image, title, questions, levels} = view3.questionStorage
-        // const main = window.querySelector('main')
-        // view2.buildPage2(main, )
-        // const allLevelMins = document.querySelectorAll('.level-min');
-        // const allLevelUrls = document.querySelectorAll('.level-url');
-        // const allLevelDescriptions = document.querySelectorAll(
-        //     '.level-description'
-        // );
-        // allLevelTitles = document.querySelectorAll('.level-title');
-        // for (let i = 0; i < allLevelTitles.length; i++) {
-        //     levelTitles.push(allLevelTitles[i].value);
-        //     levelMins.push(allLevelMins[i].value);
-        //     levelUrls.push(allLevelUrls[i].value);
-        //     levelDescription.push(allLevelDescriptions[i].value);
-        // }
-
-        // const sucess = document.querySelector('quartapagina');
-        // levelObjectCreate();
-        // postQuizz();
-        // levels.classList.add('hide');
-        // levels.classList.remove('levels');
-        // sucess.classList.remove('hide');
-        // sucess.classList.add('sucess');
-        // renderSucess();
     },
 
     levelObjectCreate: function levelObjectCreate() {
@@ -720,11 +710,8 @@ export const view3 = {
                 localStorage.setItem('userQuizzes', userQuizzesString);
             }
         });
+        
     },
-
-
-
-
 
 
 
