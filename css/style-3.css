@@ -118,6 +118,9 @@ body {
 /* .titleSection32 {
     
 } */
+button{
+    cursor: pointer;
+}
 
 .icon32 {
     margin-right: 25px;

@@ -41,6 +41,19 @@ window.goToPage2 = async function goToPage2(e) {
     console.log()
     view2.buildPage2(mainElement, image, title, questions, levels)
 }
+// onclick="goToPage2AfterFinish(event, 1)"
+// window.goToPage2AfterFinish = async function goToPage2(e) {
+//     let [user, itemID] = e.currentTarget.id.split('-')
+//     window.localStorage.setItem(0)
+//     const isUser = user === 'user'
+//     view1.cleanUpPage1Classess()
+//     let mainElement = document.querySelector('main')
+//     mainElement.classList.add('main-screen-2')
+//     const { image, questions, title, levels } = quizzes[itemID]
+
+//     console.log()
+//     view2.buildPage2(mainElement, image, title, questions, levels)
+// }
 window.resetQuizz = () => {
 
     let mainContainer = document.querySelector('main')

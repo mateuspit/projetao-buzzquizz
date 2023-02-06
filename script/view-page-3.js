@@ -82,7 +82,7 @@ export const view3 = {
                             <div class="sucess-box">
 
                             </div>
-                            <button onclick="accessQuizz()">Acessar Quizz</button>
+                            <button  onclick="goToPage2AfterFinish(event, 1)"">Acessar Quizz</button>
                             <h2 onclick="window.location.reload()">Voltar pra home</h2>
                         </div>
 
@@ -196,12 +196,12 @@ export const view3 = {
             <input id="firstWrongURL32-${i + 1}" class="question-url1" type="text" placeholder="URL da imagem 1 da pergunta ${i + 1}">   
         `;
                 elementSecondWrongQuestion32.innerHTML += `
-            <input id="secondWrongQuestion32-${i + 1}" class="wrong-answer2" type="text" placeholder="Resposta incorreta 2 da pergunta ${i + 1}">
-            <input id="secondWrongURL32-${i + 1}" class="question-url2" type="text" placeholder="URL da imagem 2 da pergunta ${i + 1}"> 
+            <input id="secondWrongQuestion32-${i + 1}" class="wrong-answer2" type="text" placeholder="Resposta incorreta 2 da pergunta ${i + 1} (OPCIONAL)">
+            <input id="secondWrongURL32-${i + 1}" class="question-url2" type="text" placeholder="URL da imagem 2 da pergunta ${i + 1} (OPCIONAL)"> 
         `;
                 elementThirdWrongQuestion32.innerHTML += `
-            <input id="thirdWrongQuestion32-${i + 1}" class="wrong-answer3" type="text" placeholder="Resposta incorreta 3 da pergunta ${i + 1}">
-            <input id="thirdWrongURL32-${i + 1}" class="question-url3" type="text" placeholder="URL da imagem 3 da pergunta ${i + 1}">   
+            <input id="thirdWrongQuestion32-${i + 1}" class="wrong-answer3" type="text" placeholder="Resposta incorreta 3 da pergunta ${i + 1} (OPCIONAL)">
+            <input id="thirdWrongURL32-${i + 1}" class="question-url3" type="text" placeholder="URL da imagem 3 da pergunta ${i + 1} (OPCIONAL)">   
         `;
             }
             else {
@@ -249,17 +249,6 @@ export const view3 = {
         
         let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
         elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g, '');
-        // currentQuestion = elementQuestionNumber;
-        // class="question-title"
-        // class="question-color"
-        // class="correct-answer"
-        // class="question-url-correct"
-        // class="wrong-answer1"
-        // class="question-url1"
-        // class="wrong-answer2"
-        // class="question-url2"
-        // class="wrong-answer3"
-        // class="question-url3"
         let validQuestionTitle, validQuestionColor, validCorrectAnswer, validQuestionUrlCorrect, validWrongAnswer1, validQuestionUrl1, validAllDataIn = false;
 
         validQuestionTitle = (document.querySelector(".question-title").value.length) >= 20;
@@ -317,6 +306,22 @@ export const view3 = {
                 isCorrectAnswer: false
             }]
         };
+        if(!!document.querySelector(".wrong-answer2").value){
+            sendableObject.questions[currentQuestion-1].answers.push({
+            text: document.querySelector(".wrong-answer2").value,
+            image: document.querySelector(".question-url2").value,
+            isCorrectAnswer: false
+            });            
+        }
+
+        if(!!document.querySelector(".wrong-answer3").value){
+            sendableObject.questions[currentQuestion-1].answers.push({
+            text: document.querySelector(".wrong-answer3").value,
+            image: document.querySelector(".question-url3").value,
+            isCorrectAnswer: false
+            });            
+        }
+
     },
 
     hide: function hide(elemento) {
