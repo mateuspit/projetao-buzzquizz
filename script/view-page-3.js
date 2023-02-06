@@ -7,6 +7,7 @@ sendableObject.questions = [];
 sendableObject.levels = [];
 let numberOfAnsweredQuestion = 0;
 let numberOfFullFillLevel = 0;
+let levelZero = false;
 let title;
 // let image;
 // let validAllQuestionAnswered = false;
@@ -244,7 +245,6 @@ export const view3 = {
 
     },
     analyzeUserInData: function analyzeUserInData(elemento) {
-        // debugger;
         let elementCloseQuestionBox32 = elemento.parentNode;
         
         let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
@@ -320,7 +320,6 @@ export const view3 = {
     },
 
     hide: function hide(elemento) {
-        // debugger
         let pagina = elemento.parentNode;
         if (pagina.classList.contains("question-box")) {
             pagina = pagina.parentNode;
@@ -358,7 +357,6 @@ export const view3 = {
         // validPage31 = validTitle && validQuestions && validLevels;
         // let validPage32 = false;
         // validPage32Function()
-        debugger;
         if (pagina.classList.contains("paginainicial")) {
             if (validPage31) {
                 pagina.classList.add('hide');
@@ -417,7 +415,6 @@ export const view3 = {
         // console.log("levels: ",sendableObject.levels);
     },
     analyzeUserInDataLevels: function analyzeUserInDataLevels(elemento){
-        debugger;
         let elementCloselevel = elemento.parentNode.parentNode;
         let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
         elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g, '');
@@ -429,11 +426,19 @@ export const view3 = {
         // class="level-description"
         let validLevelTitle, validLevelMin, validLevelUrl, validDescription, validAllDataLevelIn = false;
 
-        validLevelTitle = !!document.querySelector(".level-title").value;
-        validLevelMin = !!document.querySelector(".level-min").value;
-        validLevelUrl = !!document.querySelector(".level-url").value;
-        validDescription = !!document.querySelector(".level-description").value;
-        validAllDataLevelIn = validLevelTitle && validLevelMin && validLevelUrl && validDescription;
+        // validLevelTitle = !!document.querySelector(".level-title").value;
+        validLevelTitle = (document.querySelector(".level-title").value.length) >= 10;
+        // validLevelMin = !!document.querySelector(".level-min").value;
+        validLevelMin = (document.querySelector(".level-min").value >= 0) && (document.querySelector(".level-min").value <= 100);
+        debugger;
+        let levelMinNumber = document.querySelector(".level-min").value;
+        if( levelMinNumber == "0"){
+            levelZero = true;
+        }
+        // validLevelUrl = !!document.querySelector(".level-url").value;
+        validLevelUrl = isValidUrl(document.querySelector(".level-url").value);
+        validDescription = (document.querySelector(".level-description").value.length >= 30);
+        validAllDataLevelIn = validLevelTitle && validLevelMin && validLevelUrl && validDescription && levelZero;
         if(validAllDataLevelIn){
             getLevelsData();
             if(!elemento.classList.contains("button33")){
@@ -442,6 +447,21 @@ export const view3 = {
             }
             numberOfFullFillLevel++;            
             console.log(numberOfFullFillLevel); 
+        }
+        else if(!validLevelTitle){
+            alert("O titulo do nível deve ter pelo menos 10 caracteres!");
+        }
+        else if(!levelZero){
+            alert("O primeiro nivel deve contar % de acerto minimo de 0!");
+        }
+        else if(!validLevelMin){
+            alert("A % de acerto minimo deve ser um número e estar entre 0 a 100!");
+        }
+        else if(!validLevelUrl){
+            alert("URL invalida! Coloque a URL de uma imagem!");
+        }
+        else if(!validDescription){
+            alert("A descrição deve conter pelo menos 30 caracteres!");
         }
         else {
             alert("Faltam dados");
