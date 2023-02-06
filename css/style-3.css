@@ -121,6 +121,7 @@ body {
 
 .icon32 {
     margin-right: 25px;
+    cursor: pointer;
 }
 
 .icon32 {
@@ -176,7 +177,7 @@ body {
 .main-screen-3 .container-informacoes {
     width: 600px;
     height: 256px;
-    margin-top: 194px;
+    margin-top: 50px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -428,6 +429,7 @@ h2{
     margin-right: 17px;
     color: #000000;
     font-size: 23px;
+    cursor: pointer;
 }
 
 .main-screen-3 .question.selected ion-icon,

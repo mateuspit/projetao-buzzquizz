@@ -1,9 +1,34 @@
 import { createQuizz } from "./services.js";
 import { view2 } from './view-page-2.js'
 let currentQuestion = 1;
+// let pastQuestion = 1;
+let sendableObject = {};
+sendableObject.questions = [];
+let numberOfAnsweredQuestion = 0;
+let validAllQuestionAnswered = false;
 let numberOfQuestions = 0;
 let currentLevels = 1;
 let quizzURL = "";
+// let sendableObject.questions[0] = null;
+// let sendableObject = {
+//     title: title,
+//     image: value2,
+//     questions: [{
+//         title: value,
+//         color: valuue,
+//         answers: [{
+//             text: resp1,
+//             image: img1,
+//             isCorrectAnswer: boooolean1
+//         },
+//         {
+//             text: resp2,
+//             image: img2,
+//             isCorrectAnswer: boooolean2            
+//         }
+//     ]
+//     }]
+//   };
 export const view3 = {
     numberLevels: "",
     numberOfQuestions: "",
@@ -60,30 +85,63 @@ export const view3 = {
     </main>`
     },
 
-    reload: function reload(){
+    reload: function reload() {
         window.location.reload();
     },
     createQuestions: function createQuestions(elemento) {
         let boxQuestions = window.document.querySelector('.segundapagina .question-box');
-        if(elemento !== undefined){
-            let elementCloseQuestionBox32 = elemento.parentNode;
-            let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
-            elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g,'');
-            // console.log(elementQuestionNumber);
-            currentQuestion = elementQuestionNumber;
-        }
-        // this.numberLevels = Number(window.document.querySelector('.container-informacoes input:nth-child(4)').value);
-        // console.log(Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value))
-        // this.numberOfQuestions = Number(window.document.querySelector('.container-informacoes input:nth-child(3)').value);
+        // if (elemento !== undefined) {
+        //     let elementCloseQuestionBox32 = elemento.parentNode;
+        //     let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
+        //     elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g, '');
+        //     // console.log(elementQuestionNumber);
+        //     currentQuestion = elementQuestionNumber;
+        // }
+
+
+        // if(sendableObject.questions[0] == null){
+        //     for (let i = 0; i < numberOfQuestions; i++) {
+        //         sendableObject.questions[i] = {};
+        //     }
+        // }
+        // else{
+        //     sendableObject.questions[currentQuestion] = {
+        //         title: novoTitulo,
+        //         color: novaCor,
+        //         answers: [{
+        //             text: resp1,
+        //             image: img1,
+        //             isCorrectAnswer: booolean1
+        //         },
+        //         {
+        //             text: resp2,
+        //             image: img2,
+        //             isCorrectAnswer: booolean2
+        //         }]
+        //     };
+        // }
+
+        ///anotando os dados
+        //1 round
+        //2 round
+
+
+
+
+
+
+
         boxQuestions.innerHTML = "";
 
-        
+
 
         // console.log(this.numberLevels)
         // console.log(this.numberOfQuestions)
         for (let i = 0; i < numberOfQuestions; i++) {
-            if (i == (currentQuestion-1)){
+            if (i == (currentQuestion - 1)) {
                 // currentQuestion++;
+
+                
                 boxQuestions.innerHTML += `
                 <div class="openQuestionBox32">
                     <div class="questionBox32">
@@ -113,51 +171,52 @@ export const view3 = {
                 </div>
             `;
 
-        const elementTitleQuestion32 = document.querySelector("#openQuestionTitle");
-        const elementInputsQuestion32 = document.querySelector(".inputsQuestion32");
-        const elementInputsRightQuestions32 = document.querySelector(".inputsRightQuestions32");
-        const elementFirstWrongQuestion32 = document.querySelector(".firstWrongQuestion32");
-        const elementSecondWrongQuestion32 = document.querySelector(".secondWrongQuestion32");
-        const elementThirdWrongQuestion32 = document.querySelector(".thirdWrongQuestion32");
+                const elementTitleQuestion32 = document.querySelector("#openQuestionTitle");
+                const elementInputsQuestion32 = document.querySelector(".inputsQuestion32");
+                const elementInputsRightQuestions32 = document.querySelector(".inputsRightQuestions32");
+                const elementFirstWrongQuestion32 = document.querySelector(".firstWrongQuestion32");
+                const elementSecondWrongQuestion32 = document.querySelector(".secondWrongQuestion32");
+                const elementThirdWrongQuestion32 = document.querySelector(".thirdWrongQuestion32");
 
-            elementTitleQuestion32.innerHTML += `
-            Pergunta ${i+1}
+                elementTitleQuestion32.innerHTML += `
+            Pergunta ${i + 1}
         `;
-            elementInputsQuestion32.innerHTML += `
-            <input id="question32-${i+1}" class="question-title" type="text" placeholder="Texto da pergunta ${i+1}">
-            <input id="backgroundColor32-${i+1}" class="question-color" type="text" placeholder="Cor de fundo da pergunta ${i+1}">
+                elementInputsQuestion32.innerHTML += `
+            <input id="question32-${i + 1}" class="question-title" type="text" placeholder="Texto da pergunta ${i + 1}">
+            <input id="backgroundColor32-${i + 1}" class="question-color" type="text" placeholder="Cor de fundo da pergunta ${i + 1}">
         `;
-            elementInputsRightQuestions32.innerHTML += `
-            <input id="rightAnswer32-${i+1}" class="correct-answer" type="text" placeholder="Resposta correta da pergunta ${i+1}">
-            <input id="rightURL32-${i+1}" class="question-url-correct" type="text" placeholder="URL da imagem da pergunta ${i+1}">
+                elementInputsRightQuestions32.innerHTML += `
+            <input id="rightAnswer32-${i + 1}" class="correct-answer" type="text" placeholder="Resposta correta da pergunta ${i + 1}">
+            <input id="rightURL32-${i + 1}" class="question-url-correct" type="text" placeholder="URL da imagem da pergunta ${i + 1}">
         `;
-            elementFirstWrongQuestion32.innerHTML += `
-            <input id="firstWrongQuestion32-${i+1}" class="wrong-answer1" type="text" placeholder="Resposta incorreta 1 da pergunta ${i+1}">
-            <input id="firstWrongURL32-${i+1}" class="question-url1" type="text" placeholder="URL da imagem 1 da pergunta ${i+1}">   
+                elementFirstWrongQuestion32.innerHTML += `
+            <input id="firstWrongQuestion32-${i + 1}" class="wrong-answer1" type="text" placeholder="Resposta incorreta 1 da pergunta ${i + 1}">
+            <input id="firstWrongURL32-${i + 1}" class="question-url1" type="text" placeholder="URL da imagem 1 da pergunta ${i + 1}">   
         `;
-            elementSecondWrongQuestion32.innerHTML += `
-            <input id="secondWrongQuestion32-${i+1}" class="wrong-answer2" type="text" placeholder="Resposta incorreta 2 da pergunta ${i+1}">
-            <input id="secondWrongURL32-${i+1}" class="question-url2" type="text" placeholder="URL da imagem 2 da pergunta ${i+1}"> 
+                elementSecondWrongQuestion32.innerHTML += `
+            <input id="secondWrongQuestion32-${i + 1}" class="wrong-answer2" type="text" placeholder="Resposta incorreta 2 da pergunta ${i + 1}">
+            <input id="secondWrongURL32-${i + 1}" class="question-url2" type="text" placeholder="URL da imagem 2 da pergunta ${i + 1}"> 
         `;
-            elementThirdWrongQuestion32.innerHTML += `
-            <input id="thirdWrongQuestion32-${i+1}" class="wrong-answer3" type="text" placeholder="Resposta incorreta 3 da pergunta ${i+1}">
-            <input id="thirdWrongURL32-${i+1}" class="question-url3" type="text" placeholder="URL da imagem 3 da pergunta ${i+1}">   
+                elementThirdWrongQuestion32.innerHTML += `
+            <input id="thirdWrongQuestion32-${i + 1}" class="wrong-answer3" type="text" placeholder="Resposta incorreta 3 da pergunta ${i + 1}">
+            <input id="thirdWrongURL32-${i + 1}" class="question-url3" type="text" placeholder="URL da imagem 3 da pergunta ${i + 1}">   
         `;
-        }
-        else{
-            boxQuestions.innerHTML += `
+            }
+            else {
+                boxQuestions.innerHTML += `
             <div class="closeQuestionBox32">
-                <div class="titleQuestion32">Pergunta ${i+1}</div>
-                <div onclick="createQuestions(this)" class="icon32">
+                <div class="titleQuestion32">Pergunta ${i + 1}</div>
+                <div onclick="analyzeUserInData(this)" class="icon32">
                     <ion-icon name="create-outline"></ion-icon>
                 </div>
             </div>
             `;
+            }
+
         }
-    
-        }
+
         boxQuestions.innerHTML += `
-                <div class="button32"  onclick="hide(this); createLevels.call(window);" >
+                <div class="button32"  onclick="analyzeUserInData(this); hide(this); createLevels.call(window);" >
                     Prosseguir pra criar níveis
                 </div>
                 `;
@@ -173,20 +232,97 @@ export const view3 = {
             question.classList.add('selected');
         }
     },
+    analyzeUserInData: function analyzeUserInData(elemento) {
+        debugger;
+        let elementCloseQuestionBox32 = elemento.parentNode;
+        
+        let elementQuestionNumber = elementCloseQuestionBox32.querySelector(".titleQuestion32").innerHTML;
+        elementQuestionNumber = elementQuestionNumber.replace(/[^0-9]/g, '');
+        // console.log(elementQuestionNumber);
+        // currentQuestion = elementQuestionNumber;
+        // class="question-title"
+        // class="question-color"
+        // class="correct-answer"
+        // class="question-url-correct"
+        // class="wrong-answer1"
+        // class="question-url1"
+        // class="wrong-answer2"
+        // class="question-url2"
+        // class="wrong-answer3"
+        // class="question-url3"
+        let validQuestionTitle, validQuestionColor, validCorrectAnswer, validQuestionUrlCorrect, validWrongAnswer1, validQuestionUrl1, validAllDataIn = false;
+
+        validQuestionTitle = !!document.querySelector(".question-title").value;
+        validQuestionColor = !!document.querySelector(".question-color").value;
+        validCorrectAnswer = !!document.querySelector(".correct-answer").value;
+        validQuestionUrlCorrect = !!document.querySelector(".question-url-correct").value;
+        validWrongAnswer1 = !!document.querySelector(".wrong-answer1").value;
+        validQuestionUrl1 = !!document.querySelector(".question-url1").value;
+        // console.log(document.querySelector(".wrong-answer2").value);
+        validAllDataIn = validQuestionTitle && validQuestionColor && validCorrectAnswer && validQuestionUrlCorrect && validWrongAnswer1 && validQuestionUrl1;
+        
+        console.log((elemento.classList.contains("icon32")));
+        // if(validAllDataIn && (elemento.classList.contains("icon32"))){
+        if(validAllDataIn){
+            getQuestionsData();
+            if(!elemento.classList.contains("button32")){
+                currentQuestion = elementQuestionNumber;
+                createQuestions();  
+            }
+            numberOfAnsweredQuestion++;
+            console.log(numberOfAnsweredQuestion);                        
+        }
+        else {
+            alert("Faltam dados");
+        }
+        
+        // validQuestionTitle = !!document.querySelector(".wrong-answer2").value);
+        // validQuestionTitle = !!document.querySelector(".question-url1").value);
+        // validQuestionTitle = !!document.querySelector(".wrong-answer3").value);
+        // validQuestionTitle = !!document.querySelector(".question-url1").value);
+
+    },
+    getQuestionsData: function getQuestionsData(){
+        // validQuestionTitle = !!document.querySelector(".question-title").value;
+        // validQuestionColor = !!document.querySelector(".question-color").value;
+        // validCorrectAnswer = !!document.querySelector(".correct-answer").value;
+        // validQuestionUrlCorrect = !!document.querySelector(".question-url-correct").value;
+        // validWrongAnswer1 = !!document.querySelector(".wrong-answer1").value;
+        // validQuestionUrl1 = !!document.querySelector(".question-url1").value;
+        console.log("currentQuestion"+currentQuestion);
+        console.log("sendableobject"+sendableObject);
+        console.log("sendableobjectquestion"+sendableObject.questions);
+
+        sendableObject.questions[currentQuestion-1] = {
+            title: document.querySelector(".question-title").value,
+            color: document.querySelector(".question-color").value,
+            answers: [{
+                text: document.querySelector(".correct-answer").value,
+                image: document.querySelector(".question-url-correct").value,
+                isCorrectAnswer: true
+            },
+            {
+                text: document.querySelector(".wrong-answer1").value,
+                image: document.querySelector(".question-url1").value,
+                isCorrectAnswer: false
+            }]
+        };
+        console.log(sendableObject)
+    },
 
     hide: function hide(elemento) {
         // debugger
         let pagina = elemento.parentNode;
         // console.log("PAGINA: "+pagina);
         if (pagina.classList.contains("question-box")) {
-            pagina = pagina.parentNode;            
+            pagina = pagina.parentNode;
         }
         let nextPagina = elemento.parentNode.nextSibling?.nextSibling;
         if (pagina.classList.contains("segundapagina")) {
-            nextPagina = document.querySelector(".terceirapagina");            
+            nextPagina = document.querySelector(".terceirapagina");
         }
-        else if(pagina.classList.contains("terceirapagina")){
-            nextPagina = document.querySelector(".quartapagina");             
+        else if (pagina.classList.contains("terceirapagina")) {
+            nextPagina = document.querySelector(".quartapagina");
         }
         // console.log("NEXT PAGINA: "+nextPagina);
         let validTitle = false;
@@ -210,23 +346,29 @@ export const view3 = {
         // console.log(valueQuizzLevels)
         //validando variaveis da primeira pagina
         validTitle = (valueQuizzTitle.length <= 65) && (valueQuizzTitle.length >= 20);
-        // validURL = isValidUrl(valueQuizzURL);
+        validURL = isValidUrl(valueQuizzURL);
+        // console.log(validURL);
         validQuestions = (valueQuizzQuestions >= 3);
         validLevels = (valueQuizzLevels >= 2);
-        // validPage31 = validTitle && validURL && validQuestions && validLevels;
-        validPage31 = validTitle && validQuestions && validLevels;
+        validPage31 = validTitle && validURL && validQuestions && validLevels;
+        // validPage31 = validTitle && validQuestions && validLevels;
+        // let validPage32 = false;
+        // validPage32Function()
         if (pagina.classList.contains("paginainicial")) {
             if (validPage31) {
                 pagina.classList.add('hide');
                 nextPagina.classList.remove('hide');
                 // elementTerceiraPagina.classList.remove('hide');
+                for (let i = 0; i < numberOfQuestions; i++) {
+                    sendableObject.questions[i] = {};
+                }
             }
             else if (!validTitle) {
                 alert("O titulo deve conter de 20 até 65 caracteres!");
             }
-            // else if(!validURL){
-            //     alert("Coloquei uma URL valida!");
-            // }
+            else if (!validURL) {
+                alert("Coloquei uma URL valida!");
+            }
             else if (!validQuestions) {
                 alert("Deve existir no minimo 3 questões!");
             }
@@ -234,16 +376,17 @@ export const view3 = {
                 alert("Deve existir no minimo dois niveis!");
             }
         }
-        else if (pagina.classList.contains("segundapagina")){
-            // debugger
-            pagina.classList.add('hide');
-            nextPagina.classList.remove('hide');            
-        }
-        else if (pagina.classList.contains("terceirapagina")){
+        else if (pagina.classList.contains("segundapagina") && ((numberOfAnsweredQuestion) == numberOfQuestions)) {
+            
             pagina.classList.add('hide');
             nextPagina.classList.remove('hide');
-            // let elementSucessBox = document.querySelector(".sucess-box");
-            // elementSucessBox.innerHTML = 
+        }
+        else if (pagina.classList.contains("terceirapagina")) {
+            pagina.classList.add('hide');
+            nextPagina.classList.remove('hide');
+        }
+        else if (!(numberOfAnsweredQuestion == numberOfQuestions)){
+            alert(`Insira dados em todas as ${numberOfQuestions} perguntas`);
         }
 
         // pagina.classList.add('hide');
@@ -254,11 +397,11 @@ export const view3 = {
     renderLevels: function renderLevels(elemento) {
         const boxLevels = window.document.querySelector('.terceirapagina .level-box');
 
-        // debugger
-        if(elemento !== undefined){
+        
+        if (elemento !== undefined) {
             let elementCloselevel = elemento.parentNode.parentNode;
             let elementLevelNumber = elementCloselevel.querySelector(".close-titulo").innerHTML;
-            elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g,'');
+            elementLevelNumber = elementLevelNumber.replace(/[^0-9]/g, '');
             // console.log("Numero atual:  "+elementLevelNumber);
             currentLevels = elementLevelNumber;
         }
@@ -267,25 +410,25 @@ export const view3 = {
 
         for (let i = 0; i < numberLevels; i++) {
             // console.log("não entendi: " +numberLevels);currentLevels
-            if (i == (currentLevels-1)){
+            if (i == (currentLevels - 1)) {
                 boxLevels.innerHTML += `
                     <div class="level">
                         <div class="titulo">
                             <p>Nivel ${i + 1}</p>
                         </div>
                         <div class="selected">
-                           <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível ${i+1}">
-                           <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima do nível ${i+1}">
-                           <input type="url" class="level-url" required placeholder="URL da imagem do nível ${i+1}">
-                           <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível ${i+1}">
+                           <input type="text" class="level-title" minlength="10" required title="minimo de 10 letras" placeholder="Título do nível ${i + 1}">
+                           <input type="number" class="level-min" min="0" max="100" required placeholder="% de acerto mínima do nível ${i + 1}">
+                           <input type="url" class="level-url" required placeholder="URL da imagem do nível ${i + 1}">
+                           <input type="text" class="level-description" minlength="30" required title="minimo de 30 letras" placeholder="Descrição do nível ${i + 1}">
                         </div>
                     </div>
                 `;
             }
-            else{
+            else {
                 boxLevels.innerHTML += `
                 <div class="close-level">
-                    <div class="close-titulo">Nível ${i+1}</div>
+                    <div class="close-titulo">Nível ${i + 1}</div>
                     <div class="icon32">
                         <ion-icon onclick="renderLevels(this)" name="create-outline"></ion-icon>
                     </div>
@@ -368,9 +511,12 @@ export const view3 = {
         // levels.classList.add('levels');
         renderLevels();
     },
+    isValidUrl: function isValidUrl(urlString) {
+        return (urlString.includes('.png') || urlString.includes('.jpg') || urlString.includes('.jpeg') || urlString.includes('.bmp'));
+    },
     renderSucess: function renderSucess() {
-        debugger
-        alert("Teste");
+        
+        // alert("Teste");
         view3.inputTitle = document.querySelector('.paginainicial input').value;
         view3.inputImage = document.querySelector(
             '.paginainicial input:nth-child(2)'
@@ -496,8 +642,7 @@ export const view3 = {
         let newUserItems = JSON.parse(userItems)
         newUserItems.push({ [`${promise.id}`]: promise.key })
         window.localStorage.setItem("userID", JSON.stringify(newUserItems))
-        console.log(promise)
-
+        // console.log(promise)
         // console.log(JSON.parse(window.localStorage.getItem("userID")))
         // const promise = axios.post(
         // 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',

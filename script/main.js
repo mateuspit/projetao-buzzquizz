@@ -65,5 +65,8 @@ window.questionStorage = view3.questionStorage
 window.numberLevels = view3.numberLevels
 window.reload = view3.reload;
 window.renderSucess = view3.renderSucess;
+window.isValidUrl = view3.isValidUrl;
+window.analyzeUserInData = view3.analyzeUserInData;
+window.getQuestionsData = view3.getQuestionsData;
 
 
